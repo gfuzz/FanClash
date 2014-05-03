@@ -29,6 +29,9 @@ gem 'spring',        group: :development
 # Authentication System
 gem 'devise'
 
+# A Form helper that simplifies forms
+gem 'simple_form'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

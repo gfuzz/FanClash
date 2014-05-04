@@ -32,6 +32,12 @@ gem 'devise'
 # A Form helper that simplifies forms
 gem 'simple_form'
 
+# Use RSpec and Pry-Debugger for testing
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'pry-debugger'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

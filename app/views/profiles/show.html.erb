@@ -1,2 +1,10 @@
-<h1>Profiles#show</h1>
-<p>Find me in app/views/profiles/show.html.erb</p>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.full_name %>
+      </h1>
+    </section>
+  </aside>
+</div>

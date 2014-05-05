@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'profiles/show'
 
+  mount RailsAdmin::Engine => '//admin', as: 'rails_admin'
   devise_for :users
 
   devise_scope :user do

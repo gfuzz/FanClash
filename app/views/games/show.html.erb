@@ -1,2 +1,14 @@
 <h1>Games#show</h1>
 <p>Find me in app/views/games/show.html.erb</p>
+
+<% @players.each do |player| %>
+  <% if player.tier == 1 %>
+    <%= Player.find(player.player_id).player_name %>
+  <% end %>
+<% end %>
+
+<% @players.each do |player| %>
+  <% if player.tier == 2 %>
+    <%= Player.find(player.player_id).player_name %>
+  <% end %>
+<% end %>

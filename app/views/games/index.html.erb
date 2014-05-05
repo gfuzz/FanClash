@@ -2,5 +2,5 @@
 <p>Find me in app/views/games/index.html.erb</p>
 
 <% @games.each do |game| %>
-  <%= game.sport %> - <%= game.start_time %>
+  <%= link_to game.sport, games_show_path({:id => game.id}) %>
 <% end %>

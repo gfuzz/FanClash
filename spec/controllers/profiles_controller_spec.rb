@@ -2,16 +2,15 @@ require 'spec_helper'
 
 describe ProfilesController do
 
-	before { @user = User.new(first_name: "Jose", 
-  													last_name: "Borja", 
-  													username: "chakaitos", 
-  													email: "chakaitos@fanclash.com",
-  													password: "password", 
-  													password_confirmation: "password") }
+  before { visit sign_in_path }
+
+  let(:user) { FactoryGirl.create(:user) }
+
+  before { sign_in(user) }
 
   describe "GET 'show'" do
     it "returns a profile based on username" do
-      get :show, id: @user.username
+      get :show, id: user.username
       response.status.should eq(200)
     end
 

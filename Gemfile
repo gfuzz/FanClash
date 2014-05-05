@@ -32,10 +32,15 @@ gem 'devise'
 # A Form helper that simplifies forms
 gem 'simple_form'
 
-# Use RSpec and Pry-Debugger for testing
+# Use RSpec, Factory-Girl and Pry-Debugger for testing
 group :development, :test do
   gem 'rspec-rails'
   gem 'pry-debugger'
+  gem 'capybara'
+end
+
+group :test do
+	gem 'factory_girl_rails'
 end
 
 # Use ActiveModel has_secure_password

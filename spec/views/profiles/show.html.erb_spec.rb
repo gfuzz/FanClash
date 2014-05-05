@@ -1,5 +1,9 @@
 require 'spec_helper'
 
-describe "profiles/show.html.erb" do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe "Profile Page" do
+  let(:user) { FactoryGirl.create(:user) }
+  before { sign_in(user) }
+  before { visit "/#{user.username}" }
+
+  it { should have_content(user.full_name) }
 end

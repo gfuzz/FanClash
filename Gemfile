@@ -38,6 +38,12 @@ group :development, :test do
   gem 'pry-debugger'
 end
 
+# Adds our backend admin section to control games, players, ect.
+gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
+
+# For testing purposes
+gem 'pry-debugger'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

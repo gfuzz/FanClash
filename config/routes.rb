@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
+  get '/:id', to: "profiles#show"
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

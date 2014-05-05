@@ -32,17 +32,19 @@ gem 'devise'
 # A Form helper that simplifies forms
 gem 'simple_form'
 
-# Use RSpec and Pry-Debugger for testing
+# Use RSpec, Factory-Girl and Pry-Debugger for testing
 group :development, :test do
   gem 'rspec-rails'
   gem 'pry-debugger'
+  gem 'capybara'
+end
+
+group :test do
+	gem 'factory_girl_rails'
 end
 
 # Adds our backend admin section to control games, players, ect.
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
-
-# For testing purposes
-gem 'pry-debugger'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

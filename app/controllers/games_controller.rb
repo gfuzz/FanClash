@@ -1,8 +1,10 @@
 class GamesController < ApplicationController
-  def show
+  # Lists all the games
+  def index
+    @games = Game.all
   end
 
-  def index
+  def show
   end
 
   def update

@@ -11,17 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140505203822) do
+ActiveRecord::Schema.define(version: 20140505214609) do
 
   create_table "drafted_players", force: true do |t|
     t.integer  "user_id"
     t.integer  "game_id"
     t.integer  "player_id"
-    t.integer  "match_up_number"
-    t.boolean  "selected",        default: false
+    t.boolean  "selected",    default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "game_points"
+    t.integer  "tier"
   end
 
   create_table "games", force: true do |t|
@@ -42,10 +42,14 @@ ActiveRecord::Schema.define(version: 20140505203822) do
     t.string   "player_name"
     t.string   "player_number"
     t.string   "average_fpoints"
-    t.string   "game_time"
-    t.string   "location"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "team"
+    t.string   "position"
+    t.integer  "age"
+    t.string   "height"
+    t.string   "weight"
+    t.string   "picture"
   end
 
   create_table "users", force: true do |t|

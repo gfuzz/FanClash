@@ -1,4 +1,9 @@
 class User < ActiveRecord::Base
+
+  has_many :participating_users
+  has_many :winners
+  has_many :drafted_players
+
 	attr_accessor :login
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'games/show'
+
+  get 'games/index'
+
+  get 'games/update'
+
   get 'profiles/show'
 
   mount RailsAdmin::Engine => '//admin', as: 'rails_admin'

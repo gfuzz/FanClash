@@ -1,38 +1,57 @@
-<h1>Games#show</h1>
-<p>Find me in app/views/games/show.html.erb</p>
+<h1>Choose Your Players</h1>
+<h3>Pick 1 player from each row</h3>
 
-<%= form_tag("/draft_picks", method: "post")  %>
-  <% @tier1.each do |playerdrafted| %>
-    <% drafted_player = DraftedPlayer.find(playerdrafted.id) %>
-    <% player = Player.find(drafted_player.player_id) %>
-    <%= radio_button_tag 'tier1', drafted_player.id.to_i %> <%= player.player_name %>
-  <% end %>
-  <br />
+<div class="row">
+  <table class="table">
+  <thead>
+    <tr>
+      <th>PLAYERS DRAFT #1</th>
+      <th>PLAYERS DRAFT #2</th>
+    </tr>
+  </thead>
+  <tbody>
+  <%= form_tag("/draft_picks", method: "post")  %>
+    <tr>
+    <% @tier1.each do |playerdrafted| %>
+      <% drafted_player = DraftedPlayer.find(playerdrafted.id) %>
+      <% player = Player.find(drafted_player.player_id) %>
+      <td class="col-sm-6"><%= radio_button_tag 'tier1', drafted_player.id.to_i %> <%= player.player_name %></td>
+    <% end %>
+    </tr>
+    <br />
 
-  <% @tier2.each do |playerdrafted| %>
-    <% drafted_player = DraftedPlayer.find(playerdrafted.id) %>
-    <% player = Player.find(drafted_player.player_id) %>
-    <%= radio_button_tag 'tier2', drafted_player.id.to_i %> <%= player.player_name %>
-  <% end %>
-  <br />
+    <% @tier2.each do |playerdrafted| %>
+      <% drafted_player = DraftedPlayer.find(playerdrafted.id) %>
+      <% player = Player.find(drafted_player.player_id) %>
+      <td class="col-sm-6"><%= radio_button_tag 'tier2', drafted_player.id.to_i %> <%= player.player_name %></td>
+    <% end %>
+    </tr>
+    <br />
 
-  <% @tier3.each do |playerdrafted| %>
-    <% drafted_player = DraftedPlayer.find(playerdrafted.id) %>
-    <% player = Player.find(drafted_player.player_id) %>
-    <%= radio_button_tag 'tier3', drafted_player.id.to_i %> <%= player.player_name %>
-  <% end %>
-  <br />
+    <% @tier3.each do |playerdrafted| %>
+      <% drafted_player = DraftedPlayer.find(playerdrafted.id) %>
+      <% player = Player.find(drafted_player.player_id) %>
+      <td class="col-sm-6"><%= radio_button_tag 'tier3', drafted_player.id.to_i %> <%= player.player_name %></td>
+    <% end %>
+    </tr>
+    <br />
 
-  <% @tier4.each do |playerdrafted| %>
-    <% drafted_player = DraftedPlayer.find(playerdrafted.id) %>
-    <% player = Player.find(drafted_player.player_id) %>
-    <%= radio_button_tag 'tier4', drafted_player.id.to_i %> <%= player.player_name %>
-  <% end %>
-  <br />
+    <% @tier4.each do |playerdrafted| %>
+      <% drafted_player = DraftedPlayer.find(playerdrafted.id) %>
+      <% player = Player.find(drafted_player.player_id) %>
+      <td class="col-sm-6"><%= radio_button_tag 'tier4', drafted_player.id.to_i %> <%= player.player_name %></td>
+    <% end %>
+    </tr>
+    <br />
 
-  <% @tier5.each do |playerdrafted| %>
-    <% drafted_player = DraftedPlayer.find(playerdrafted.id) %>
-    <% player = Player.find(drafted_player.player_id) %>
-    <%= radio_button_tag 'tier5', drafted_player.id.to_i %> <%= player.player_name %>
-  <% end %>
-  <%= submit_tag( "Send Choices" ) %>
+    <% @tier5.each do |playerdrafted| %>
+      <% drafted_player = DraftedPlayer.find(playerdrafted.id) %>
+      <% player = Player.find(drafted_player.player_id) %>
+      <td class="col-sm-6"><%= radio_button_tag 'tier5', drafted_player.id.to_i %> <%= player.player_name %></td>
+    <% end %>
+    </tr>
+    </br>
+    <tr><td></td><td><%= submit_tag( "Choose My Players", class: "btn-primary" ) %></td></tr>
+  </tbody>
+  </table>
+</div>

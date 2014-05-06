@@ -1,14 +1,29 @@
 <h1>Games#show</h1>
 <p>Find me in app/views/games/show.html.erb</p>
 
-<% @players.each do |player| %>
-  <% if player.tier == 1 %>
-    <%= Player.find(player.player_id).player_name %>
+<%= form_tag :action => 'update', :id => @game %>
+  <% @tier1.each do |playerdrafted| %>
+    <% player = Player.find(playerdrafted.player_id) %>
+    <%= radio_button_tag 'tier1', player.player_name %> <%= player.player_name %>
   <% end %>
-<% end %>
 
-<% @players.each do |player| %>
-  <% if player.tier == 2 %>
-    <%= Player.find(player.player_id).player_name %>
+  <% @tier2.each do |playerdrafted| %>
+    <% player = Player.find(playerdrafted.player_id) %>
+    <%= radio_button_tag 'tier2', player.player_name %> <%= player.player_name %>
   <% end %>
-<% end %>
+
+  <% @tier3.each do |playerdrafted| %>
+    <% player = Player.find(playerdrafted.player_id) %>
+    <%= radio_button_tag 'tier3', player.player_name %> <%= player.player_name %>
+  <% end %>
+
+  <% @tier4.each do |playerdrafted| %>
+    <% player = Player.find(playerdrafted.player_id) %>
+    <%= radio_button_tag 'tier4', player.player_name %> <%= player.player_name %>
+  <% end %>
+
+  <% @tier5.each do |playerdrafted| %>
+    <% player = Player.find(playerdrafted.player_id) %>
+    <%= radio_button_tag 'tier5', player.player_name %> <%= player.player_name %>
+  <% end %>
+  <%= submit_tag( "Send Choices" ) %>

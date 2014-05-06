@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'games/update'
 
   get 'profiles/show'
+  post 'games/update'
 
   mount RailsAdmin::Engine => '//admin', as: 'rails_admin'
   devise_for :users

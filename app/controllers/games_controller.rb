@@ -24,13 +24,12 @@ class GamesController < ApplicationController
   end
 
   def update
-    @game = Game.find(params[:id])
-    binding.pry
-    if @game.update(params)
-      redirect_to @game, notice: 'Players added successfully.'
-    else
-      render :show
-    end
+    # @game = Game.find(params[:id])
+    # if @game.update(params)
+    #   redirect_to @game, notice: 'Players added successfully.'
+    # else
+    #   render :show
+    # end
   end
 
   # private

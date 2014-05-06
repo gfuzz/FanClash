@@ -22,22 +22,4 @@ class GamesController < ApplicationController
 	  	render file: 'public/404', status: 404, formats: [:html]
 	  end
   end
-
-  def update
-  	binding.pry
-  	params.each do |choice|
-  		DraftPicks.new(current_user.id, )
-  	end
-    # @game = Game.find(params[:id])
-    # if @game.update(params)
-    #   redirect_to @game, notice: 'Players added successfully.'
-    # else
-    #   render :show
-    # end
-  end
-
-  # private
-  # def games_params
-  #   params.require(:game).permit(:city, :temp)
-  # end
 end

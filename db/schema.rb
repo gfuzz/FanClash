@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140506143617) do
+ActiveRecord::Schema.define(version: 20140506183013) do
 
   create_table "draft_picks", force: true do |t|
     t.integer  "user_id"
@@ -35,6 +35,10 @@ ActiveRecord::Schema.define(version: 20140506143617) do
     t.datetime "start_time"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "prizes",          precision: 8, scale: 2
+    t.decimal  "buy_in",          precision: 8, scale: 2
+    t.integer  "current_entries"
+    t.integer  "allowed_entries"
   end
 
   create_table "participating_users", force: true do |t|

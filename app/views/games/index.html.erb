@@ -1,6 +1,30 @@
-<h1>Games#index</h1>
-<p>Find me in app/views/games/index.html.erb</p>
+<h1>Today's Games</h1><br />
 
-<% @games.each do |game| %>
-  <%= link_to game.sport, games_show_path({:id => game.id}) %>
-<% end %>
+<div class="row">
+	<div class="col-sm-12">
+		<table class="table table-hover">
+	  	<thead>
+	  		<tr>
+	  			<th>PRIZES</th>
+	  			<th>SPORT</th>
+	  			<th>BUY-IN</th>
+	  			<th>ENTRIES</th>
+	  			<th>START TIME</th>
+	  			<th>ENTER</th>
+	  		</tr>
+	  	</thead>
+	  	<tbody>
+				<% @games.each do |game| %>
+					<tr>
+					  <td><%= game.number_to_currency(game.prizes) %></td>
+					  <td><%= game.sport %></td>
+					  <td><%= game.number_to_currency(game.buy_in) %></td>
+					  <td><%= game.entries %></td>
+					  <td><%= game.start_time %></td>
+					  <td><%= link_to 'Play', games_show_path({:id => game.id}) %></td>
+				  </tr>
+				<% end %>
+	  	</tbody>
+		</table>
+	</div>
+</div>

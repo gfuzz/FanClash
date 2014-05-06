@@ -24,6 +24,10 @@ class GamesController < ApplicationController
   end
 
   def update
+  	binding.pry
+  	params.each do |choice|
+  		DraftPicks.new(current_user.id, )
+  	end
     # @game = Game.find(params[:id])
     # if @game.update(params)
     #   redirect_to @game, notice: 'Players added successfully.'

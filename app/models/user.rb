@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 
   has_many :participating_users
   has_many :winners
-  has_many :drafted_players
+  has_many :draft_picks
 
 	attr_accessor :login
   # Include default devise modules. Others available are:

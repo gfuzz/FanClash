@@ -3,27 +3,32 @@
 
 <%= form_tag :action => 'update', :id => @game %>
   <% @tier1.each do |playerdrafted| %>
-    <% player = Player.find(playerdrafted.player_id) %>
-    <%= radio_button_tag 'tier1', player.player_name %> <%= player.player_name %>
+    <% drafted_player = DraftedPlayer.find(playerdrafted.id) %>
+    <% player = Player.find(drafted_player.player_id) %>
+    <%= radio_button_tag 'tier1', drafted_player.id.to_i %> <%= player.player_name %>
   <% end %>
 
   <% @tier2.each do |playerdrafted| %>
-    <% player = Player.find(playerdrafted.player_id) %>
-    <%= radio_button_tag 'tier2', player.player_name %> <%= player.player_name %>
+    <% drafted_player = DraftedPlayer.find(playerdrafted.id) %>
+    <% player = Player.find(drafted_player.player_id) %>
+    <%= radio_button_tag 'tier2', drafted_player.id.to_i %> <%= player.player_name %>
   <% end %>
 
   <% @tier3.each do |playerdrafted| %>
-    <% player = Player.find(playerdrafted.player_id) %>
-    <%= radio_button_tag 'tier3', player.player_name %> <%= player.player_name %>
+    <% drafted_player = DraftedPlayer.find(playerdrafted.id) %>
+    <% player = Player.find(drafted_player.player_id) %>
+    <%= radio_button_tag 'tier3', drafted_player.id.to_i %> <%= player.player_name %>
   <% end %>
 
   <% @tier4.each do |playerdrafted| %>
-    <% player = Player.find(playerdrafted.player_id) %>
-    <%= radio_button_tag 'tier4', player.player_name %> <%= player.player_name %>
+    <% drafted_player = DraftedPlayer.find(playerdrafted.id) %>
+    <% player = Player.find(drafted_player.player_id) %>
+    <%= radio_button_tag 'tier4', drafted_player.id.to_i %> <%= player.player_name %>
   <% end %>
 
   <% @tier5.each do |playerdrafted| %>
-    <% player = Player.find(playerdrafted.player_id) %>
-    <%= radio_button_tag 'tier5', player.player_name %> <%= player.player_name %>
+    <% drafted_player = DraftedPlayer.find(playerdrafted.id) %>
+    <% player = Player.find(drafted_player.player_id) %>
+    <%= radio_button_tag 'tier5', drafted_player.id.to_i %> <%= player.player_name %>
   <% end %>
   <%= submit_tag( "Send Choices" ) %>

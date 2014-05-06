@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   get 'games/index'
 
-  get 'games/update'
+  get 'games/update' => 'games#update'
 
   get 'profiles/show'
   post 'games/update'
@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   root 'home#index'
 
   get '/:id', to: "profiles#show"
+
+  resources "draft_picks"
+  # POST /draft_picks -> CREATE
 
 
 

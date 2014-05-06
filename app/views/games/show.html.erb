@@ -1,30 +1,34 @@
 <h1>Games#show</h1>
 <p>Find me in app/views/games/show.html.erb</p>
 
-<%= form_tag :action => 'update', :id => @game %>
+<%= form_tag("/draft_picks", method: "post")  %>
   <% @tier1.each do |playerdrafted| %>
     <% drafted_player = DraftedPlayer.find(playerdrafted.id) %>
     <% player = Player.find(drafted_player.player_id) %>
     <%= radio_button_tag 'tier1', drafted_player.id.to_i %> <%= player.player_name %>
   <% end %>
+  <br />
 
   <% @tier2.each do |playerdrafted| %>
     <% drafted_player = DraftedPlayer.find(playerdrafted.id) %>
     <% player = Player.find(drafted_player.player_id) %>
     <%= radio_button_tag 'tier2', drafted_player.id.to_i %> <%= player.player_name %>
   <% end %>
+  <br />
 
   <% @tier3.each do |playerdrafted| %>
     <% drafted_player = DraftedPlayer.find(playerdrafted.id) %>
     <% player = Player.find(drafted_player.player_id) %>
     <%= radio_button_tag 'tier3', drafted_player.id.to_i %> <%= player.player_name %>
   <% end %>
+  <br />
 
   <% @tier4.each do |playerdrafted| %>
     <% drafted_player = DraftedPlayer.find(playerdrafted.id) %>
     <% player = Player.find(drafted_player.player_id) %>
     <%= radio_button_tag 'tier4', drafted_player.id.to_i %> <%= player.player_name %>
   <% end %>
+  <br />
 
   <% @tier5.each do |playerdrafted| %>
     <% drafted_player = DraftedPlayer.find(playerdrafted.id) %>

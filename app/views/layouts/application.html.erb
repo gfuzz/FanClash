@@ -21,7 +21,7 @@
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar">
           <% if user_signed_in? %>
-            <li><%= link_to "My Games", "#" %></li>
+            <li><%= link_to "Games", games_index_path %></li>
           <% end %>
         </ul>
         <ul class="nav navbar-nav navbar-right">

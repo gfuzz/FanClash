@@ -2,6 +2,7 @@
 <p>Find me in app/views/games/show.html.erb</p>
 
 <%= form_tag("/draft_picks", method: "post")  %>
+
   <% @tier1.each do |playerdrafted| %>
     <% drafted_player = DraftedPlayer.find(playerdrafted.id) %>
     <% player = Player.find(drafted_player.player_id) %>
@@ -35,4 +36,5 @@
     <% player = Player.find(drafted_player.player_id) %>
     <%= radio_button_tag 'tier5', drafted_player.id.to_i %> <%= player.player_name %>
   <% end %>
+  <input type="hidden" value="<%= @game_id %>" name="gameid"></input>
   <%= submit_tag( "Send Choices" ) %>

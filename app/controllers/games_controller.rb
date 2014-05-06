@@ -6,7 +6,7 @@ class GamesController < ApplicationController
 
   def show
   	@players = DraftedPlayer.where(game_id: params[:id])
-
+    @game_id = params[:id]
     start_place = 1
     end_place = 5
 

@@ -1,7 +1,25 @@
 RailsAdmin.config do |config|
 
-
+  # Adds actual player name to drop-down list in RailsAdmin instead of just stating Player1
   config.label_methods.unshift :player_name
+
+  # Makes sure the user is signed in before accessing the admin page
+  config.authenticate_with{
+    unless current_user
+      # session[:return_to] = request.url
+      flash[:alert] = 'You need to be signed in and an admin to access the admin page.'
+      redirect_to '/'
+    end
+  }
+
+  # Makes sure the current user is actually an admin before allowing the to access admin page.
+  config.authorize_with{
+    redirect_to '/', :alert => "You are not authorized to access that page" unless current_user.admin?
+  }
+
+
+
+
   ### Popular gems integration
 
   ## == Devise ==
@@ -9,6 +27,7 @@ RailsAdmin.config do |config|
   #   warden.authenticate! scope: :user
   # end
   # config.current_user_method(&:current_user)
+
 
   ## == Cancan ==
   # config.authorize_with :cancan
@@ -34,3 +53,4 @@ RailsAdmin.config do |config|
     # history_show
   end
 end
+

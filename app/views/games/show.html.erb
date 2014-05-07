@@ -10,7 +10,7 @@
     </tr>
   </thead>
   <tbody>
-  <%= form_tag("/draft_picks", method: "post")  %>
+  <%= form_tag("/draft_picks", method: "post", :id => "myform")  %>
     <tr>
     <% @tier1.each do |playerdrafted| %>
       <% drafted_player = DraftedPlayer.find(playerdrafted.id) %>
@@ -56,4 +56,22 @@
   </tbody>
   </table>
 </div>
+
+
+<script>
+$(document).ready(function(){
+  $('#myform').on('submit', function (e) {
+      e.preventDefault()
+      if($('input[type=radio]:checked').size() < 5) {
+          console.log("test")
+          alert("Test Alert for now: Must choose 5 players...")
+      } else {
+          document.getElementById("myform").submit()
+      }
+  })
+});
+</script>
+
+
+
 

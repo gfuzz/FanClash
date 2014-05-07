@@ -4,10 +4,8 @@ class DraftPicksController < ApplicationController
     player_check = newParams[:tier1].to_i
     game_id = DraftedPlayer.find(player_check).game_id
 
-    #
-    ActiveRecord::Base.connection.execute("DELETE FROM drafted_players WHERE id in (SELECT drafted_players.id FROM users INNER JOIN draft_picks ON users.id = draft_picks.user_id INNER JOIN drafted_players ON draft_picks.drafted_player_id = drafted_players.id WHERE user_id = #{current_user.id} AND drafted_players.game_id = #{game_id})")
 
-
+    ActiveRecord::Base.connection.execute("DELETE FROM draft_picks WHERE id in (SELECT drafted_players.id FROM users INNER JOIN draft_picks ON users.id = draft_picks.user_id INNER JOIN drafted_players ON draft_picks.drafted_player_id = drafted_players.id WHERE user_id = #{current_user.id} AND drafted_players.game_id = #{game_id})")
 
     pu = ParticipatingUser.new(user_id: current_user.id, game_id: game_id)
     pu.save

@@ -5,10 +5,12 @@ class DraftPicksController < ApplicationController
     game_id = DraftedPlayer.find(player_check).game_id
 
 
-    ActiveRecord::Base.connection.execute("DELETE FROM draft_picks WHERE id in (SELECT drafted_players.id FROM users INNER JOIN draft_picks ON users.id = draft_picks.user_id INNER JOIN drafted_players ON draft_picks.drafted_player_id = drafted_players.id WHERE user_id = #{current_user.id} AND drafted_players.game_id = #{game_id})")
+    ActiveRecord::Base.connection.execute("DELETE FROM draft_picks WHERE id in (SELECT draft_picks.id FROM users INNER JOIN draft_picks ON users.id = draft_picks.user_id INNER JOIN drafted_players ON draft_picks.drafted_player_id = drafted_players.id WHERE user_id = #{current_user.id} AND drafted_players.game_id = #{game_id})")
 
-    pu = ParticipatingUser.new(user_id: current_user.id, game_id: game_id)
-    pu.save
+    if ParticipatingUser.where(user_id: current_user.id, game_id: game_id).count == 0
+      pu = ParticipatingUser.new(user_id: current_user.id, game_id: game_id)
+      pu.save
+    end
 
     newParams.each do |choice|
       player_choice = choice[1].to_i

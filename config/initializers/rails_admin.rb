@@ -1,5 +1,7 @@
 RailsAdmin.config do |config|
 
+
+  config.label_methods.unshift :player_name
   ### Popular gems integration
 
   ## == Devise ==

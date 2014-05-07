@@ -10,3 +10,31 @@
     </section>
   </aside>
 </div>
+
+<h1>My Games</h1><br />
+
+<div class="row">
+  <div class="col-sm-12">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>SPORT</th>
+          <th>BUY-IN</th>
+          <th>START TIME</th>
+          <th>EDIT</th>
+        </tr>
+
+      </thead>
+      <tbody>
+        <% @games.each do |game| %>
+          <tr>
+            <td><%= game.sport %></td>
+            <td><%= game.number_to_currency(game.buy_in) %></td>
+            <td><%= game.start_time %></td>
+            <td><%= link_to 'Edit', games_show_path({:id => game.id}) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

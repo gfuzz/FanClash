@@ -1,4 +1,19 @@
 class DraftPicksController < ApplicationController
+  def index
+  end
+
+  def show
+    user = ParticipatingUser.where(:user_id => current_user.id)
+    @game_ids = []
+    user.each do |e|
+      @game_ids << e.game_id
+    end
+    @games = []
+    @game_ids.each do |game_id|
+      @games << Game.find(game_id)
+    end
+  end
+
   def create
     newParams = params.slice(:tier1, :tier2, :tier3, :tier4, :tier5)
     player_check = newParams[:tier1].to_i
@@ -20,7 +35,7 @@ class DraftPicksController < ApplicationController
     end
 
     # Redirects after successful submitting.
-    redirect_to "/draft_picks/index"
+    redirect_to "/draft_picks/#{current_user.id}"
   end
 end
 

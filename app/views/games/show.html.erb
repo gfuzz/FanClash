@@ -1,64 +1,69 @@
+<style type="text/css">
+.radioButton {
+    float:left;
+    width:400px;
+    height:92px;
+    line-height:20px;
+    text-align:center;
+    background: #ccc;
+    margin:2px;
+    cursor:pointer;
+}
+
+.pickem {
+    margin: 0 auto;
+}
+
+div.selected {
+    background:#00cc00;
+}
+</style>
+
 <h1>Choose Your Players</h1>
-<h3>Pick 1 player from each row</h3>
 
-<div class="row">
-  <table class="table">
-  <thead>
-    <tr>
-      <th>PLAYERS DRAFT #1</th>
-      <th>PLAYERS DRAFT #2</th>
-    </tr>
-  </thead>
-  <tbody>
-  <%= form_tag("/draft_picks", method: "post", :id => "myform")  %>
-    <tr>
-    <% @tier1.each do |playerdrafted| %>
-      <% drafted_player = DraftedPlayer.find(playerdrafted.id) %>
-      <% player = Player.find(drafted_player.player_id) %>
-      <td class="col-sm-6"><%= radio_button_tag 'tier1', drafted_player.id.to_i %> <%= player.player_name %></td>
-    <% end %>
-    </tr>
-    <br />
-
-    <% @tier2.each do |playerdrafted| %>
-      <% drafted_player = DraftedPlayer.find(playerdrafted.id) %>
-      <% player = Player.find(drafted_player.player_id) %>
-      <td class="col-sm-6"><%= radio_button_tag 'tier2', drafted_player.id.to_i %> <%= player.player_name %></td>
-    <% end %>
-    </tr>
-    <br />
-
-    <% @tier3.each do |playerdrafted| %>
-      <% drafted_player = DraftedPlayer.find(playerdrafted.id) %>
-      <% player = Player.find(drafted_player.player_id) %>
-      <td class="col-sm-6"><%= radio_button_tag 'tier3', drafted_player.id.to_i %> <%= player.player_name %></td>
-    <% end %>
-    </tr>
-    <br />
-
-    <% @tier4.each do |playerdrafted| %>
-      <% drafted_player = DraftedPlayer.find(playerdrafted.id) %>
-      <% player = Player.find(drafted_player.player_id) %>
-      <td class="col-sm-6"><%= radio_button_tag 'tier4', drafted_player.id.to_i %> <%= player.player_name %></td>
-    <% end %>
-    </tr>
-    <br />
-
-    <% @tier5.each do |playerdrafted| %>
-      <% drafted_player = DraftedPlayer.find(playerdrafted.id) %>
-      <% player = Player.find(drafted_player.player_id) %>
-      <td class="col-sm-6"><%= radio_button_tag 'tier5', drafted_player.id.to_i %> <%= player.player_name %></td>
-    <% end %>
-    </tr>
-    </br>
-      <input type="hidden" value="<%= @game_id %>" name="gameid"></input>
-    <tr><td></td><td><%= submit_tag( "Choose My Players", class: "btn-primary" ) %></td></tr>
-  </tbody>
-  </table>
+<div class="pickem">
+<%= form_tag("/draft_picks", method: "post", :id => "myform")  %>
+    <div class="tier1">
+        <% @tier1.each do |playerdrafted| %>
+          <% drafted_player = DraftedPlayer.find(playerdrafted.id) %>
+          <% player = Player.find(drafted_player.player_id) %>
+            <div class="radioButton"><input type="radio" name="tier1" value="<%=drafted_player.id.to_i %>" /><img src="<%= player.picture %>"><%= player.player_name %></div>
+        <% end %>
+    </div>
+    <div class="tier2">
+        <% @tier2.each do |playerdrafted| %>
+          <% drafted_player = DraftedPlayer.find(playerdrafted.id) %>
+          <% player = Player.find(drafted_player.player_id) %>
+            <div class="radioButton"><input type="radio" name="tier2" value="<%=drafted_player.id.to_i %>" /><img src="<%= player.picture %>"><%= player.player_name %></div>
+        <% end %>
+    </div>
+    <div class="tier3">
+        <% @tier3.each do |playerdrafted| %>
+          <% drafted_player = DraftedPlayer.find(playerdrafted.id) %>
+          <% player = Player.find(drafted_player.player_id) %>
+            <div class="radioButton"><input type="radio" name="tier3" value="<%=drafted_player.id.to_i %>" /><img src="<%= player.picture %>"><%= player.player_name %></div>
+        <% end %>
+    </div>
+    <div class="tier4">
+        <% @tier4.each do |playerdrafted| %>
+          <% drafted_player = DraftedPlayer.find(playerdrafted.id) %>
+          <% player = Player.find(drafted_player.player_id) %>
+            <div class="radioButton"><input type="radio" name="tier4" value="<%=drafted_player.id.to_i %>" /><img src="<%= player.picture %>"><%= player.player_name %></div>
+        <% end %>
+    </div>
+    <div class="tier5">
+        <% @tier5.each do |playerdrafted| %>
+          <% drafted_player = DraftedPlayer.find(playerdrafted.id) %>
+          <% player = Player.find(drafted_player.player_id) %>
+            <div class="radioButton"><input type="radio" name="tier5" value="<%=drafted_player.id.to_i %>" /><img src="<%= player.picture %>"><%= player.player_name %></div>
+        <% end %>
+    </div>
 </div>
+<%= submit_tag( "Choose My Players", class: "btn-primary" ) %>
 
 
-<script>
+
+<script type="text/javascript">
 $(document).ready(function(){
   $('#myform').on('submit', function (e) {
       e.preventDefault()
@@ -70,8 +75,33 @@ $(document).ready(function(){
       }
   })
 });
+
+$(".pickem :radio").hide().click(function(e){
+    e.stopPropagation();
+});
+
+$(".tier1 .radioButton").click(function(e){
+    $(this).closest(".tier1").find("div").removeClass("selected");
+    $(this).addClass("selected").find(":radio").click();
+});
+
+$(".tier2 .radioButton").click(function(e){
+    $(this).closest(".tier2").find("div").removeClass("selected");
+    $(this).addClass("selected").find(":radio").click();
+});
+
+$(".tier3 .radioButton").click(function(e){
+    $(this).closest(".tier3").find("div").removeClass("selected");
+    $(this).addClass("selected").find(":radio").click();
+});
+
+$(".tier4 .radioButton").click(function(e){
+    $(this).closest(".tier4").find("div").removeClass("selected");
+    $(this).addClass("selected").find(":radio").click();
+});
+
+$(".tier5 .radioButton").click(function(e){
+    $(this).closest(".tier5").find("div").removeClass("selected");
+    $(this).addClass("selected").find(":radio").click();
+});
 </script>
-
-
-
-

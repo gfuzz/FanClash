@@ -15,7 +15,7 @@ class DraftPicksController < ApplicationController
   end
 
   def create
-    newParams = params.slice(:tier1, :tier2, :tier3, :tier4, :tier5)
+    newParams = params.slice(:tier0, :tier1, :tier2, :tier3, :tier4)
     player_check = newParams[:tier1].to_i
     game_id = DraftedPlayer.find(player_check).game_id
 

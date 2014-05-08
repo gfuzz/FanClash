@@ -160,51 +160,51 @@ DraftedPlayer.create ([
   {
     game_id: 1,
     player_id: 1,
-    tier:1,
+    tier:0,
   },
   {
     game_id: 1,
     player_id: 2,
-    tier:1,
+    tier:0,
   },
   {
     game_id: 1,
     player_id: 3,
-    tier:2,
+    tier:1,
   },
   {
     game_id: 1,
     player_id: 4,
-    tier:2,
+    tier:1,
   },
   {
     game_id: 1,
     player_id: 5,
-    tier:3,
+    tier:2,
   },
   {
     game_id: 1,
     player_id: 6,
-    tier:3,
+    tier:2,
   },
   {
     game_id: 1,
     player_id: 7,
-    tier:4,
+    tier:3,
   },
   {
     game_id: 1,
     player_id: 8,
-    tier:4,
+    tier:3,
   },
   {
     game_id: 1,
     player_id: 9,
-    tier:5,
+    tier:4,
   },
   {
     game_id: 1,
     player_id: 10,
-    tier:5,
+    tier:4,
   }
   ])

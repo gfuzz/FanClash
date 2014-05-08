@@ -36,7 +36,6 @@ body {
 	padding: 2px;
 }
 #footer {
-   position:absolute;
-   bottom:0;
-   height:100px;   /* Height of the footer */
+	padding-top: 35px;
+  height:150px;
 }

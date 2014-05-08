@@ -39,15 +39,15 @@ div.selected {
     </div>
 
     <div class="tier3">
-      <%= render 'games/pair_select', :tier_num => 2, :draft_a => @drafted_players[3], :draft_b => @drafted_players[4] %>
+      <%= render 'games/pair_select', :tier_num => 2, :draft_a => @drafted_players[4], :draft_b => @drafted_players[5] %>
     </div>
 
     <div class="tier4">
-      <%= render 'games/pair_select', :tier_num => 3, :draft_a => @drafted_players[6], :draft_b => @drafted_players[6] %>
+      <%= render 'games/pair_select', :tier_num => 3, :draft_a => @drafted_players[6], :draft_b => @drafted_players[7] %>
     </div>
 
     <div class="tier5">
-      <%= render 'games/pair_select', :tier_num => 4, :draft_a => @drafted_players[7], :draft_b => @drafted_players[8] %>
+      <%= render 'games/pair_select', :tier_num => 4, :draft_a => @drafted_players[8], :draft_b => @drafted_players[9] %>
     </div>
 
 </div>
@@ -99,17 +99,8 @@ $(".tier5 .radioButton").click(function(e){
 });
 </script>
 
-
-<% if @selections != nil %>
-  <% @selections.each do |selection| %>
-    <% @drafted_players.each do |player| %>
-      <% if selection.drafted_player_id == player.id %>
-        <script type="text/javascript">
-          $(".tier5 .radioButton").click(function(e){
-            $(":radio[value=]").addClass("selected").find(":radio").click();
-          });
-        </script>
-      <% end %>
-    <% end %>
-  <% end %>
+<script type="text/javascript">
+<% @selection_ids && @selection_ids.each do |drafted_player_id| %>
+    $("[value=<%= drafted_player_id %>]").prop("checked", true).parent().addClass("selected");
 <% end %>
+</script>

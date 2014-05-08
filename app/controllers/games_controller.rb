@@ -51,6 +51,7 @@ class GamesController < ApplicationController
       if ParticipatingUser.where(game_id: @game.id, user_id: current_user.id)
         # @draftedPlayers = DraftedPlayer.where(game_id: @game.id)
         @selections = DraftPick.where(user_id: current_user.id)
+        @selection_ids = @selections.map {|s| s.drafted_player_id }
       end
 
       if @game

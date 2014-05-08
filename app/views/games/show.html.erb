@@ -2,16 +2,23 @@
 .radioButton {
     float:left;
     width:400px;
-    height:92px;
+    height:70px;
     line-height:20px;
     text-align:center;
     background: #ccc;
     margin:2px;
     cursor:pointer;
+    margin-bottom: 10px;
+}
+
+.radioButton img{
+    height:70px;
 }
 
 .pickem {
     margin: 0 auto;
+    width: 820px;
+    height: 410px;
 }
 
 div.selected {
@@ -19,7 +26,7 @@ div.selected {
 }
 </style>
 
-<h1>Choose Your Players</h1>
+<center><h1>Choose Your Players</h1></center>
 
 <div class="pickem">
 <%= form_tag("/draft_picks", method: "post", :id => "myform")  %>
@@ -59,7 +66,7 @@ div.selected {
         <% end %>
     </div>
 </div>
-<%= submit_tag( "Choose My Players", class: "btn-primary" ) %>
+<center><%= submit_tag( "Choose My Players", class: "btn-primary" ) %></center>
 
 
 

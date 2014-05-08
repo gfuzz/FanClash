@@ -35,7 +35,7 @@ class DraftPicksController < ApplicationController
     end
 
     # Redirects after successful submitting.
-    redirect_to "/draft_picks/#{current_user.id}"
+    redirect_to "/#{current_user.username}"
   end
 end
 

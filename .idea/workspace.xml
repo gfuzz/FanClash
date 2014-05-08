@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="689982b6-8860-4145-8674-e27f396b5d64" name="Default" comment="" />
+    <list default="true" id="689982b6-8860-4145-8674-e27f396b5d64" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/draft_picks_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/draft_picks_controller.rb" />
+    </list>
     <ignored path="fan_clash.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -214,6 +216,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="940" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="dynamic.classpath" value="false" />
+    <property name="FullScreen" value="false" />
   </component>
   <component name="RunManager" selected="Rails.Development: fan_clash">
     <configuration default="true" type="RakeRunConfigurationType" factoryName="Rake">

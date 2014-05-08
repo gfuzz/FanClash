@@ -31,28 +31,23 @@ div.selected {
 <div class="pickem">
 <%= form_tag("/draft_picks", method: "post", :id => "myform")  %>
     <div class="tier1">
-      <div class="radioButton"><input type="radio" name="tier1" value="<%= @drafted_player1.id.to_i %>" /><img src="<%= @player1.picture %>"><%= @player1.player_name %></div>
-      <div class="radioButton"><input type="radio" name="tier1" value="<%= @drafted_player2.id.to_i %>" /><img src="<%= @player2.picture %>"><%= @player2.player_name %></div>
+      <%= render 'games/pair_select', :tier_num => 0, :draft_a => @drafted_players[0], :draft_b => @drafted_players[1] %>
     </div>
 
     <div class="tier2">
-      <div class="radioButton"><input type="radio" name="tier2" value="<%= @drafted_player3.id.to_i %>" /><img src="<%= @player3.picture %>"><%= @player3.player_name %></div>
-      <div class="radioButton"><input type="radio" name="tier2" value="<%= @drafted_player4.id.to_i %>" /><img src="<%= @player4.picture %>"><%= @player4.player_name %></div>
+      <%= render 'games/pair_select', :tier_num => 1, :draft_a => @drafted_players[2], :draft_b => @drafted_players[3] %>
     </div>
 
     <div class="tier3">
-      <div class="radioButton"><input type="radio" name="tier3" value="<%= @drafted_player5.id.to_i %>" /><img src="<%= @player5.picture %>"><%= @player5.player_name %></div>
-      <div class="radioButton"><input type="radio" name="tier3" value="<%= @drafted_player6.id.to_i %>" /><img src="<%= @player6.picture %>"><%= @player6.player_name %></div>
+      <%= render 'games/pair_select', :tier_num => 2, :draft_a => @drafted_players[3], :draft_b => @drafted_players[4] %>
     </div>
 
     <div class="tier4">
-      <div class="radioButton"><input type="radio" name="tier4" value="<%= @drafted_player7.id.to_i %>" /><img src="<%= @player7.picture %>"><%= @player7.player_name %></div>
-      <div class="radioButton"><input type="radio" name="tier4" value="<%= @drafted_player8.id.to_i %>" /><img src="<%= @player8.picture %>"><%= @player8.player_name %></div>
+      <%= render 'games/pair_select', :tier_num => 3, :draft_a => @drafted_players[6], :draft_b => @drafted_players[6] %>
     </div>
 
     <div class="tier5">
-      <div class="radioButton"><input type="radio" name="tier5" value="<%= @drafted_player9.id.to_i %>" /><img src="<%= @player9.picture %>"><%= @player9.player_name %></div>
-      <div class="radioButton"><input type="radio" name="tier5" value="<%= @drafted_player10.id.to_i %>" /><img src="<%= @player10.picture %>"><%= @player10.player_name %></div>
+      <%= render 'games/pair_select', :tier_num => 4, :draft_a => @drafted_players[7], :draft_b => @drafted_players[8] %>
     </div>
 
 </div>
@@ -103,3 +98,18 @@ $(".tier5 .radioButton").click(function(e){
     $(this).addClass("selected").find(":radio").click();
 });
 </script>
+
+
+<% if @selections != nil %>
+  <% @selections.each do |selection| %>
+    <% @drafted_players.each do |player| %>
+      <% if selection.drafted_player_id == player.id %>
+        <script type="text/javascript">
+          $(".tier5 .radioButton").click(function(e){
+            $(":radio[value=]").addClass("selected").find(":radio").click();
+          });
+        </script>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

@@ -24,13 +24,16 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-#gem 'spring',        group: :development
+gem 'spring',        group: :development
 
 # Authentication System
 gem 'devise'
 
 # A Form helper that simplifies forms
 gem 'simple_form'
+
+# Heroku gems
+gem 'rails_12factor', group: :production
 
 # Use RSpec, Factory-Girl and Pry-Debugger for testing
 group :development, :test do

@@ -20,8 +20,13 @@
 					  <td><%= game.sport %></td>
 					  <td><%= game.number_to_currency(game.buy_in) %></td>
 					  <td><%= game.entries %></td>
-					  <td><%= game.start_time %></td>
-					  <td><%= link_to 'Play', games_show_path({:id => game.id}) %></td>
+					  <td><%= game.start_time.strftime('%d %b, %Y - %I:%M%p (CST)') %></td>
+					  <% now = DateTime.now %>
+					  <% if now < game.start_time %>
+						  <td><%= link_to 'Play', games_show_path({:id => game.id}) %></td>
+					  <% else %>
+					  	<td>Game has started</td>
+					  <% end %>
 				  </tr>
 				<% end %>
 	  	</tbody>

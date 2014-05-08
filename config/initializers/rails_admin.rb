@@ -17,9 +17,6 @@ RailsAdmin.config do |config|
     redirect_to '/', :alert => "You are not authorized to access that page" unless current_user.admin?
   }
 
-
-
-
   ### Popular gems integration
 
   ## == Devise ==

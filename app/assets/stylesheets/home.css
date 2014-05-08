@@ -35,3 +35,8 @@ body {
 	border: 1px solid #ccc;
 	padding: 2px;
 }
+#footer {
+   position:absolute;
+   bottom:0;
+   height:100px;   /* Height of the footer */
+}

@@ -8,30 +8,30 @@
 
 User.create([
   {
-    first_name: "Jose", 
-	  last_name: "Borja", 
-	  username: "chakaitos", 
-	  email: "chakaitos@gmail.com",
-	  password: "password", 
-	  password_confirmation: "password",
-	  admin: true
+    first_name: "Jose",
+    last_name: "Borja",
+    username: "chakaitos",
+    email: "chakaitos@gmail.com",
+    password: "password",
+    password_confirmation: "password",
+    admin: true
   },
   {
-    first_name: "Drew", 
-	  last_name: "Garcia", 
-	  username: "drewg233", 
-	  email: "drewg233@gmail.com",
-	  password: "password", 
-	  password_confirmation: "password",
-	  admin: true
+    first_name: "Drew",
+    last_name: "Garcia",
+    username: "drewg233",
+    email: "drewgarcia23@gmail.com",
+    password: "password",
+    password_confirmation: "password",
+    admin: true
   },
   {
-    first_name: "Test", 
-	  last_name: "User", 
-	  username: "test", 
-	  email: "test@gmail.com",
-	  password: "password", 
-	  password_confirmation: "password"
+    first_name: "Test",
+    last_name: "User",
+    username: "test",
+    email: "test@gmail.com",
+    password: "password",
+    password_confirmation: "password"
   }
   ])
 
@@ -45,7 +45,7 @@ Player.create([
     age:28,
     height:"6'2",
     weight:"190",
-    picture:"https://starstreet.s3.amazonaws.com/images/headshots/2017/195x270.jpg"   
+    picture:"https://starstreet.s3.amazonaws.com/images/headshots/2017/195x270.jpg"
   },
   {
     player_name:"JJ Redick",
@@ -56,7 +56,7 @@ Player.create([
     age:29,
     height:"6'4",
     weight:"190",
-    picture:"https://starstreet.s3.amazonaws.com/images/headshots/1950/195x270.jpg" 
+    picture:"https://starstreet.s3.amazonaws.com/images/headshots/1950/195x270.jpg"
   },
   {
     player_name:"Serge Ibaka",
@@ -145,5 +145,66 @@ Player.create([
     height:"6'",
     weight:"185",
     picture:"https://starstreet.s3.amazonaws.com/images/headshots/1912/195x270.jpg"
+  }
+  ])
+
+Game.create([
+  {
+    sport: "Test Basketball",
+    prizes: 500,
+    buy_in: 2,
+    allowed_entries: 100
+  }])
+
+DraftedPlayer.create ([
+  {
+    game_id: 1,
+    player_id: 1,
+    tier:1,
+  },
+  {
+    game_id: 1,
+    player_id: 2,
+    tier:1,
+  },
+  {
+    game_id: 1,
+    player_id: 3,
+    tier:2,
+  },
+  {
+    game_id: 1,
+    player_id: 4,
+    tier:2,
+  },
+  {
+    game_id: 1,
+    player_id: 5,
+    tier:3,
+  },
+  {
+    game_id: 1,
+    player_id: 6,
+    tier:3,
+  },
+  {
+    game_id: 1,
+    player_id: 7,
+    tier:4,
+  },
+  {
+    game_id: 1,
+    player_id: 8,
+    tier:4,
+  },
+  {
+    game_id: 1,
+    player_id: 9,
+    tier:5,
+  },
+  {
+    game_id: 1,
+    player_id: 10,
+    tier:5,
   }
   ])

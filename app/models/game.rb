@@ -10,4 +10,11 @@ class Game < ActiveRecord::Base
   def number_to_currency(number)
   	"$" + number.to_s
   end
+
+  def add_entry
+  	if self.current_entries < self.allowed_entries
+  		self.current_entries += 1
+  	end
+  	self.save
+  end
 end

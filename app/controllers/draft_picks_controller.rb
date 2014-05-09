@@ -18,6 +18,7 @@ class DraftPicksController < ApplicationController
     newParams = params.slice(:tier0, :tier1, :tier2, :tier3, :tier4)
     player_check = newParams[:tier1].to_i
     game_id = DraftedPlayer.find(player_check).game_id
+    game = Game.find(game_id)
 
     # This line deletes the users picks from the table draft_picks that is associated with that user and the game.
     ActiveRecord::Base.connection.execute("DELETE FROM draft_picks WHERE id in (SELECT draft_picks.id FROM users INNER JOIN draft_picks ON users.id = draft_picks.user_id INNER JOIN drafted_players ON draft_picks.drafted_player_id = drafted_players.id WHERE user_id = #{current_user.id} AND drafted_players.game_id = #{game_id})")
@@ -26,6 +27,8 @@ class DraftPicksController < ApplicationController
     if ParticipatingUser.where(user_id: current_user.id, game_id: game_id).count == 0
       pu = ParticipatingUser.new(user_id: current_user.id, game_id: game_id)
       pu.save
+
+      game.add_entry
     end
 
     # Takes the users picks and adds them to the DraftPick table.

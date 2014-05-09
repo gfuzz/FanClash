@@ -23,12 +23,16 @@ class DraftPicksController < ApplicationController
     # This line deletes the users picks from the table draft_picks that is associated with that user and the game.
     ActiveRecord::Base.connection.execute("DELETE FROM draft_picks WHERE id in (SELECT draft_picks.id FROM users INNER JOIN draft_picks ON users.id = draft_picks.user_id INNER JOIN drafted_players ON draft_picks.drafted_player_id = drafted_players.id WHERE user_id = #{current_user.id} AND drafted_players.game_id = #{game_id})")
 
-    # Adds a player to ParticipatingUser table, only if the player does not exist within this table and associated with the game they are submitting to.
-    if ParticipatingUser.where(user_id: current_user.id, game_id: game_id).count == 0
-      pu = ParticipatingUser.new(user_id: current_user.id, game_id: game_id)
-      pu.save
+    if game.current_entries < game.allowed_entries
+      # Adds a player to ParticipatingUser table, only if the player does not exist within this table and associated with the game they are submitting to.
+      if ParticipatingUser.where(user_id: current_user.id, game_id: game_id).count == 0
+        pu = ParticipatingUser.new(user_id: current_user.id, game_id: game_id)
+        pu.save
 
-      game.add_entry
+        game.add_entry
+      end
+    else
+      flash[:alert] = 'Cannot join, game is full.'
     end
 
     # Takes the users picks and adds them to the DraftPick table.

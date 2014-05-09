@@ -11,6 +11,7 @@
 	  			<th>ENTRIES</th>
 	  			<th>START TIME</th>
 	  			<th>ENTER</th>
+	  			<th>LOCKS IN</th>
 	  		</tr>
 	  	</thead>
 	  	<tbody>
@@ -24,6 +25,7 @@
 					  <% now = DateTime.now %>
 					  <% if now < game.start_time %>
 						  <td><%= link_to 'Play', games_show_path({:id => game.id}) %></td>
+						  <td><div class="game-countdown" data-start-time="<%= game.start_time.to_i %>"></div></td>
 					  <% else %>
 					  	<td>Game has started</td>
 					  <% end %>
@@ -33,3 +35,13 @@
 		</table>
 	</div>
 </div>
+<script type="text/javascript">
+
+$('.game-countdown').each(function (idx, elem) {
+
+	var gameTimeSecondsString = $(elem).data('start-time');
+	var gameTimeSecondsInteger = parseInt(gameTimeSecondsString,10); 
+	var gameTime = new Date(Number(gameTimeSecondsInteger) * 1000); 
+  $(elem).countdown({until: gameTime});
+});
+</script>

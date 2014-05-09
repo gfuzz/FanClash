@@ -11,5 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.plugin
+//= require jquery.countdown
 //= require jquery_ujs
 //= require_tree .

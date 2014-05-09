@@ -11,6 +11,7 @@ class ProfilesController < ApplicationController
 		  @game_ids.each do |game_id|
 		    @games << Game.find(game_id)
 		  end
+		  @games = @games.sort_by { |game| game.start_time }
   		render action: :show
   	else
 	  	render file: 'public/404', status: 404, formats: [:html]

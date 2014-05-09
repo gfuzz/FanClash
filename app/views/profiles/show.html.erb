@@ -5,7 +5,7 @@
         <%= gravatar_for @user %>
         <%= @user.full_name %>
       </h1>
-      <p>Member Since:<%= @user.created_at %></p>
+      <p>Member Since: <%= @user.created_at.strftime('%d %b, %Y') %></p>
       <a href="/users/edit">Edit Profile</a>
     </section>
   </aside>
@@ -22,6 +22,7 @@
           <th>BUY-IN</th>
           <th>START TIME</th>
           <th>EDIT</th>
+          <th>LOCKS IN</th>
         </tr>
 
       </thead>
@@ -30,11 +31,28 @@
           <tr>
             <td><%= game.sport %></td>
             <td><%= game.number_to_currency(game.buy_in) %></td>
-            <td><%= game.start_time %></td>
-            <td><%= link_to 'Edit', games_show_path({:id => game.id}) %></td>
+            <td><%= game.start_time.strftime('%d %b, %Y - %I:%M%p (CST)') %></td>
+            <% now = DateTime.now %>
+            <% if now < game.start_time %>
+              <td><%= link_to 'Edit', games_show_path({:id => game.id}) %></td>
+              <td><div class="game-countdown" data-start-time="<%= game.start_time.to_i %>"></div></td>
+            <% else %>
+              <td>Closed</td>
+              <td>Game has started</td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
     </table>
   </div>
 </div>
+<script type="text/javascript">
+
+$('.game-countdown').each(function (idx, elem) {
+
+  var gameTimeSecondsString = $(elem).data('start-time');
+  var gameTimeSecondsInteger = parseInt(gameTimeSecondsString,10); 
+  var gameTime = new Date(Number(gameTimeSecondsInteger) * 1000); 
+  $(elem).countdown({until: gameTime});
+});
+</script>

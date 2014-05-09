@@ -27,6 +27,7 @@
 						  <td><%= link_to 'Play', games_show_path({:id => game.id}) %></td>
 						  <td><div class="game-countdown" data-start-time="<%= game.start_time.to_i %>"></div></td>
 					  <% else %>
+					  	<td>Closed</td>
 					  	<td>Game has started</td>
 					  <% end %>
 				  </tr>

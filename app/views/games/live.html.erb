@@ -17,9 +17,6 @@
 <div class="userList">
 <h3>Users In Game</h3>
   <% @userList.each do |user| %>
-<%= link_to("#{user.username}", "live/#{@game.id}/#{user.username}", :rel => 'shadowbox; width=500; height=300;') %>
+    <a href="live/<%= @game.id %>/<%= user.username %>"><%= user.username %></a>
   <% end %>
 </div>
-
-
-

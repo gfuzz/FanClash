@@ -40,7 +40,7 @@ class GamesController < ApplicationController
         @userPicks << Player.where(id: searchDraftedPlayer.player_id)[0]
       end
 
-      # Gets all of the users.
+      # Gets all of the users in the game.
       usersForGame = ParticipatingUser.where(game_id: @game.id)
       @userList = []
       usersForGame.each do |user|

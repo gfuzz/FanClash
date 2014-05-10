@@ -1,13 +1,13 @@
-
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://www.jacklmoore.com/colorbox/jquery.colorbox.js"></script>
 
 <center><h1><%= @game.sport %></h1></center>
 <div class="usersPicks">
-<h3>Your Picks</h3>
-  <% @userPicks.each do |pick| %>
-    <%= pick.player_name %><br/>
+  <p>This is just for testing purposes. Need to display this information better later.<p>
+<h3>All players and stats:</h3>
+  <% @userPicks.each do |player| %>
+    <% pick = DraftedPlayer.where(player_id: player.id)[0] %>
+    <%= player.player_name %> - Points: <%= pick.points %> - Rebounds: <%= pick.rebounds %> -Assists: <%= pick.assists %> -Blocks: <%= pick.blocks %> -Steals: <%= pick.steals %> -Turnovers: <%= pick.turnovers %><br/>
   <% end %>
 </div>
 

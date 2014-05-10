@@ -32,20 +32,22 @@ class GamesController < ApplicationController
       game_id = params[:id]
       @game = Game.find(game_id)
 
-      # Gets our users picks for the game
-      @userPicks = []
-      allUsersPicks = DraftPick.where(user_id: current_user.id)
-      allUsersPicks.each do |pick|
-        searchDraftedPlayer = DraftedPlayer.where(id: pick.drafted_player_id, game_id: game_id)[0]
-        @userPicks << Player.where(id: searchDraftedPlayer.player_id)[0]
-      end
+      # Gets our current users picks for the game
+      @userPicks = Game.getUsersPicks(current_user.id, game_id)
 
       # Gets all of the users in the game.
-      usersForGame = ParticipatingUser.where(game_id: @game.id)
-      @userList = []
-      usersForGame.each do |user|
-        @userList << User.where(id: user.user_id)[0]
-      end
+      @userList = Game.getAllUsersForGame(game_id)
+
+      # Lists all the drafted players for a game.
+      @draftedPlayerList = Game.getDraftedPlayers(game_id)
+
+      # Takes URL of each player, puts it in array, then takes out the duplicates.
+      @allDraftedPlayersURL = Game.getAllDraftedPlayersURL(game_id)
+
+      # Scraps the data from each players URL and stores in an array.
+      @playerStatsData = Game.scrapData(@allDraftedPlayersURL)
+
+      @playerStatsDataArray = Game.sortScrap(@draftedPlayerList, @playerStatsData)
 
       if @game && @game.start_time < DateTime.now
         render action: :live
@@ -74,7 +76,6 @@ class GamesController < ApplicationController
     else
       render file: 'public/404', status: 404, formats: [:html]
     end
-
   end
 
 end

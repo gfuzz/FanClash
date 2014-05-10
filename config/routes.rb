@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   get 'games/index'
 
   get 'games/update' => 'games#update'
-
+  get 'games/live'
+  get 'games/live/:id/:user' => 'games#getuser'
   get 'profiles/show'
   post 'games/update'
 

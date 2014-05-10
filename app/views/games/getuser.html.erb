@@ -1,0 +1,11 @@
+<h1><%= @theUserObject.username %></h1>
+
+
+<h3>Users Picks for Game: <%= @game.sport %></h3>
+
+<div class="usersPicks">
+<h3><%= @theUserObject.username %> Picks</h3>
+  <% @userPicks.each do |pick| %>
+    <%= pick.player_name %><br/>
+  <% end %>
+</div>

@@ -10,4 +10,8 @@ class Game < ActiveRecord::Base
   def number_to_currency(number)
   	"$" + number.to_s
   end
+
+  def self.get_user_by_username(username)
+    User.where(username: username)[0]
+  end
 end

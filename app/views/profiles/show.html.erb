@@ -38,7 +38,7 @@
               <td><div class="game-countdown" data-start-time="<%= game.start_time.to_i %>"></div></td>
             <% else %>
               <td>Closed</td>
-              <td>Game has started</td>
+              <td><a href="games/live?id=<%= game.id %>">Watch</a></td>
             <% end %>
           </tr>
         <% end %>
@@ -51,8 +51,8 @@
 $('.game-countdown').each(function (idx, elem) {
 
   var gameTimeSecondsString = $(elem).data('start-time');
-  var gameTimeSecondsInteger = parseInt(gameTimeSecondsString,10); 
-  var gameTime = new Date(Number(gameTimeSecondsInteger) * 1000); 
+  var gameTimeSecondsInteger = parseInt(gameTimeSecondsString,10);
+  var gameTime = new Date(Number(gameTimeSecondsInteger) * 1000);
   $(elem).countdown({until: gameTime});
 });
 </script>

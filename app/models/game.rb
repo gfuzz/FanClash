@@ -14,4 +14,11 @@ class Game < ActiveRecord::Base
   def self.get_user_by_username(username)
     User.where(username: username)[0]
   end
+
+  def add_entry
+  	if self.current_entries < self.allowed_entries
+  		self.current_entries += 1
+  	end
+  	self.save
+  end
 end

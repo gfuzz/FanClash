@@ -4,12 +4,7 @@
 <script src="http://www.jacklmoore.com/colorbox/jquery.colorbox.js"></script>
 
 <center><h1><%= @game.sport %></h1></center>
-<div class="usersPicks">
-<h3>Your Picks</h3>
-  <% @userPicks.each do |pick| %>
-    <%= pick.player_name %><br/>
-  <% end %>
-</div>
+<a href="#my-picks" data-toggle="modal">My Picks</a>
 
 <div class="opponentsPicks">
 </div>
@@ -19,4 +14,25 @@
   <% @userList.each do |user| %>
     <a href="live/<%= @game.id %>/<%= user.username %>"><%= user.username %></a>
   <% end %>
+</div>
+
+<div class="modal fade" id="my-picks" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">My Picks</h4>
+      </div>
+      <div class="modal-body">
+      	<ul>
+        <% @userPicks.each do |pick| %>
+			    <td><%= pick.player_name %></td><br />
+			  <% end %>
+			  </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>

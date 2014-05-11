@@ -47,6 +47,10 @@ class GamesController < ApplicationController
       # Scraps the data from each players URL and stores in an array.
       @playerStatsData = Game.scrapData(@allDraftedPlayersURL)
 
+      # @theUserObject = Game.get_user_by_username(theUser)
+
+
+
       @playerStatsDataArray = Game.sortScrap(@draftedPlayerList, @playerStatsData)
 
       if @game && @game.start_time < DateTime.now
@@ -62,7 +66,7 @@ class GamesController < ApplicationController
     game_id = params[:id]
     @game = Game.find(game_id)
 
-    @theUserObject = Game.get_user_by_username(theUser)
+    @theUserObject =  (theUser)
 
     @userPicks = []
     allUsersPicks = DraftPick.where(user_id: @theUserObject.id)

@@ -1,4 +1,6 @@
 class GamesController < ApplicationController
+  before_action :authenticate_user!, :except => [:index, :show]
+
   # Lists all the games
   def index
     @games = Game.all.sort_by { |game| game.start_time }

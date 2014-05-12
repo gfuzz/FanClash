@@ -1,4 +1,6 @@
 class GamesController < ApplicationController
+  before_action :authenticate_user!, :except => [:index, :show]
+
   # Lists all the games
   def index
     @games = Game.all.sort_by { |game| game.start_time }
@@ -18,9 +20,9 @@ class GamesController < ApplicationController
 
       if @game
         if @game.start_time < DateTime.now
-          render action: :show
+          redirect_to "/games/live?id=#{@game.id}"
         else
-          redirect_to "live?id=#{@game.id}"
+          render action: :show
         end
       else
         render file: 'public/404', status: 404, formats: [:html]

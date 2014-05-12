@@ -16,9 +16,9 @@
 <h3>Users In Game</h3>
   <% @userList.each do |user| %>
     <% ourUser = Game.get_user_by_username(user.username) %>
-    <%= link_to "#{user.username}", "#my-picks", :data => {:toggle => "modal"}, :user => user %>
+    <%= link_to "#{user.username}", "#my-picks#{user.id}", :data => {:toggle => "modal"}, :user => user %>
 
-  <div class="modal fade" id="my-picks" role="dialog">
+  <div class="modal fade" id="my-picks<%= user.id %>" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">

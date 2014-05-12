@@ -51,9 +51,9 @@ div.selected {
   </div>
 </div>
 
-<center><%= submit_tag( "Choose My Players", class: "btn-primary" ) %><br />
-
-<div class="game-countdown counter" data-start-time="<%= @game.start_time.to_i %>"></div></center>
+<center><%= submit_tag( "Choose My Players", class: "btn-primary" ) %>
+  <div class="game-countdown counter" data-start-time="<%= @game.start_time.to_i %>"></div>
+</center>
 
 <div class="modal fade" id="fp-scoring" role="dialog">
   <div class="modal-dialog">
@@ -138,7 +138,6 @@ $('.game-countdown').each(function (idx, elem) {
   var gameTime = new Date(Number(gameTimeSecondsInteger) * 1000);
   $(elem).countdown({until: gameTime, onExpiry: countdownEnd});
 });
-// var root_url = "<%= root_url %>"
 function countdownEnd() { 
-  window.location.replace("/");}
+  window.location.replace("/games/live?id=<%= @game.id %>");}
 </script>

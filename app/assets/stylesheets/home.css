@@ -39,3 +39,6 @@ body {
 	padding-top: 35px;
   height:150px;
 }
+#countdown-show-game{
+	display: none;
+}

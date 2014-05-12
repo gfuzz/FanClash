@@ -1,0 +1,9 @@
+<% now = DateTime.now %>
+<% if now < game.start_time %>
+  <td id="countdown-hide-game"><%= link_to link_text, games_show_path({:id => game.id}) %></td>
+  <td id="countdown-show-game"><a href="games/live?id=<%= game.id %>">Watch</a></td>
+  <td id="countdown-game-started"><div class="game-countdown" data-start-time="<%= game.start_time.to_i %>"></div></td>
+<% else %>
+  <td><a href="games/live?id=<%= game.id %>">Watch</a></td>
+  <td>Locked</td>
+<% end %>

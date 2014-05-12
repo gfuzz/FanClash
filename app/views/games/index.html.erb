@@ -22,14 +22,7 @@
 					  <td><%= game.number_to_currency(game.buy_in) %></td>
 					  <td><%= game.entries %></td>
 					  <td><%= game.start_time.strftime('%d %b, %Y - %I:%M%p (CST)') %></td>
-					  <% now = DateTime.now %>
-					  <% if now < game.start_time %>
-						  <td><%= link_to 'Play', games_show_path({:id => game.id}) %></td>
-						  <td><div class="game-countdown" data-start-time="<%= game.start_time.to_i %>"></div></td>
-					  <% else %>
-					  	<td>Closed</td>
-					  	<td>Game has started</td>
-					  <% end %>
+					  <%= render 'games/countdown_cols', :game => game, :link_text => 'Play' %>
 				  </tr>
 				<% end %>
 	  	</tbody>
@@ -37,11 +30,4 @@
 	</div>
 </div>
 
-<script type="text/javascript">
-$('.game-countdown').each(function (idx, elem) {
-	var gameTimeSecondsString = $(elem).data('start-time');
-	var gameTimeSecondsInteger = parseInt(gameTimeSecondsString,10);
-	var gameTime = new Date(Number(gameTimeSecondsInteger) * 1000);
-  $(elem).countdown({until: gameTime});
-});
-</script>
+<%= render 'games/countdown_script' %>

@@ -1,0 +1,13 @@
+<script type="text/javascript">
+$('.game-countdown').each(function (idx, elem) {
+	var gameTimeSecondsString = $(elem).data('start-time');
+	var gameTimeSecondsInteger = parseInt(gameTimeSecondsString,10);
+	var gameTime = new Date(Number(gameTimeSecondsInteger) * 1000);
+  $(elem).countdown({until: gameTime, onExpiry: liftOff});
+});
+function liftOff() { 
+  $('#countdown-hide-game').hide();  
+  $('#countdown-show-game').show();  
+  $('#countdown-game-started').html('<td>Locked</td>'); 
+}
+</script>

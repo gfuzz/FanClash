@@ -153,6 +153,7 @@ Game.create([
     sport: "Test Basketball",
     prizes: 500,
     buy_in: 2,
+    current_entries: 0
     allowed_entries: 100
   }])
 

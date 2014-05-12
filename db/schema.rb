@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20140512160623) do
     t.datetime "updated_at"
     t.decimal  "prizes",          precision: 8, scale: 2
     t.decimal  "buy_in",          precision: 8, scale: 2
-    t.integer  "current_entries"
+    t.integer  "current_entries",                         default: 0
     t.integer  "allowed_entries"
   end
 

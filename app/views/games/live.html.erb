@@ -1,5 +1,4 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://www.jacklmoore.com/colorbox/jquery.colorbox.js"></script>
 
 <center><h1><%= @game.sport %></h1></center>
 <div class="usersPicks">
@@ -19,35 +18,30 @@
     <% ourUser = Game.get_user_by_username(user.username) %>
     <%= link_to "#{user.username}", "#my-picks", :data => {:toggle => "modal"}, :user => user %>
 
-    <div class="modal fade" id="my-picks" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title"><%= user.username %></h4>
-          </div>
-          <div class="modal-body" style="height:260px; max-height:540px; width:630px; max-width:630px;">
-              <div>
-                <%= gravatar_for user %>
-              </div>
-              <div class="usersPicks">
-                <% theUsersPicks = Game.getUsersPicks(user.id, @game.id) %>
-              <h3><%= user.username %> Picks</h3>
-                <% theUsersPicks.each do |pick| %>
-                  <%= pick.player_name %><br/>
-                <% end %>
-              </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
+  <div class="modal fade" id="my-picks" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title"><%= user.username %></h4>
+        </div>
+        <div class="modal-body" style="height:260px; max-height:540px; width:630px; max-width:630px;">
+            <div>
+              <%= gravatar_for user %>
+            </div>
+            <div class="usersPicks">
+              <% theUsersPicks = Game.getUsersPicks(user.id, @game.id) %>
+            <h3><%= user.username %> Picks</h3>
+              <% theUsersPicks.each do |pick| %>
+                <%= pick.player_name %><br/>
+              <% end %>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
+  </div>
   <% end %>
 </div>
-
-
-
-
-

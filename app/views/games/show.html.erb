@@ -51,7 +51,9 @@ div.selected {
   </div>
 </div>
 
-<center><%= submit_tag( "Choose My Players", class: "btn-primary" ) %></center>
+<center><%= submit_tag( "Choose My Players", class: "btn-primary" ) %><br />
+
+<div class="game-countdown counter" data-start-time="<%= @game.start_time.to_i %>"></div></center>
 
 <div class="modal fade" id="fp-scoring" role="dialog">
   <div class="modal-dialog">
@@ -127,4 +129,16 @@ $(".tier5 .radioButton").click(function(e){
 <% @selection_ids && @selection_ids.each do |drafted_player_id| %>
     $("[value=<%= drafted_player_id %>]").prop("checked", true).parent().addClass("selected");
 <% end %>
+</script>
+
+<script type="text/javascript">
+$('.game-countdown').each(function (idx, elem) {
+  var gameTimeSecondsString = $(elem).data('start-time');
+  var gameTimeSecondsInteger = parseInt(gameTimeSecondsString,10);
+  var gameTime = new Date(Number(gameTimeSecondsInteger) * 1000);
+  $(elem).countdown({until: gameTime, onExpiry: countdownEnd});
+});
+// var root_url = "<%= root_url %>"
+function countdownEnd() { 
+  window.location.replace("/");}
 </script>

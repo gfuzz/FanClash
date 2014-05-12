@@ -6,7 +6,7 @@
 <h3>All players and stats:</h3>
   <% @userPicks.each do |player| %>
     <% pick = DraftedPlayer.where(player_id: player.id)[0] %>
-    <%= player.player_name %> - Points: <%= pick.points %> - Rebounds: <%= pick.rebounds %> -Assists: <%= pick.assists %> -Blocks: <%= pick.blocks %> -Steals: <%= pick.steals %> -Turnovers: <%= pick.turnovers %><br/>
+    <%= player.player_name %> - Points: <%= pick.points %> - Rebounds: <%= pick.rebounds %> -Assists: <%= pick.assists %> -Blocks: <%= pick.blocks %> -Steals: <%= pick.steals %> -Turnovers: <%= pick.turnovers %> -Fantasy Points: <%= pick.fantasypoints %><br/>
   <% end %>
 </div>
 <div class="opponentsPicks">

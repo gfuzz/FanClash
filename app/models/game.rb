@@ -91,13 +91,19 @@ class Game < ActiveRecord::Base
             steals = x.css("td")[9].text.to_i
             turnovers = x.css("td")[8].text.to_i
 
+            fantasypoints = points + (rebounds * 1.25) + (assists * 1.5) + (blocks * 2) + (steals * 2) + (turnovers * -1)
+
             DraftedPlayer.where(:player_id => playerObject.id).update_all(:points => points , :rebounds => rebounds,
               :assists => assists, :blocks => blocks, :steals => steals,
-              :turnovers => turnovers)
+              :turnovers => turnovers, :fantasypoints => fantasypoints)
           end
         end
       end
     end
+  end
+
+  def self.getFantasyPoints
+
   end
 
   def add_entry

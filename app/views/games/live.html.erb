@@ -8,6 +8,14 @@
     <% pick = DraftedPlayer.where(player_id: player.id)[0] %>
     <%= player.player_name %> - Points: <%= pick.points %> - Rebounds: <%= pick.rebounds %> -Assists: <%= pick.assists %> -Blocks: <%= pick.blocks %> -Steals: <%= pick.steals %> -Turnovers: <%= pick.turnovers %> -Fantasy Points: <%= pick.fantasypoints %><br/>
   <% end %>
+  <% @total = 0 %>
+  <% @userPicks.each do |player| %>
+    <% pick = DraftedPlayer.where(player_id: player.id)[0] %>
+    <% if pick.fantasypoints != nil %>
+      <% @total += pick.fantasypoints %>
+    <% end %>
+  <% end %>
+    Total Fantasy Points: <%= @total %>
 </div>
 <div class="opponentsPicks">
 </div>
@@ -32,9 +40,17 @@
             <div class="usersPicks">
               <% theUsersPicks = Game.getUsersPicks(user.id, @game.id) %>
             <h3><%= user.username %> Picks</h3>
-              <% theUsersPicks.each do |pick| %>
-                <%= pick.player_name %><br/>
+            <% @userTotal = 0 %>
+              <% theUsersPicks.each do |pickplayer| %>
+              <% pick = DraftedPlayer.where(player_id: pickplayer.id)[0] %>
+                <% if pick.fantasypoints != nil %>
+                  <% @userTotal += pick.fantasypoints %>
+                <% end %>
+                <%= pickplayer.player_name %> - <%= pick.fantasypoints %><br/>
               <% end %>
+              <br/>
+              <br/>
+                Total Fantasy Points: <%= @userTotal %>
             </div>
         </div>
         <div class="modal-footer">

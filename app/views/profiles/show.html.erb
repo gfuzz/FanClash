@@ -31,7 +31,7 @@
             <td><%= game.sport %></td>
             <td><%= game.number_to_currency(game.buy_in) %></td>
             <td><%= game.start_time.strftime('%d %b, %Y - %I:%M%p (CST)') %></td>
-            <%= render 'games/countdown_cols', :game => game, :link_text => 'Edit' %>
+              <%= render 'games/countdown_cols', :game => game, :link_text => 'Edit' %>
           </tr>
         <% end %>
       </tbody>

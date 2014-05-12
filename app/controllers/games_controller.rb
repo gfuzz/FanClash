@@ -17,7 +17,11 @@ class GamesController < ApplicationController
       end
 
       if @game
-        render action: :show
+        if @game.start_time < DateTime.now
+          render action: :show
+        else
+          redirect_to "live?id=#{@game.id}"
+        end
       else
         render file: 'public/404', status: 404, formats: [:html]
       end
@@ -47,9 +51,13 @@ class GamesController < ApplicationController
       # Scraps the data from each players URL and stores in an array.
       @playerStatsData = Game.scrapData(@allDraftedPlayersURL)
 
-      # @theUserObject = Game.get_user_by_username(theUser)
+      # Checks to see if all the games are over and returns a true or false value.
+      @gamesOver = Game.checkGamesOver
 
-
+      # If all games are over equals true then it gets the winners.
+      if @gamesOver == true
+        @winners = Game.getWinners(game_id)
+      end
 
       @playerStatsDataArray = Game.sortScrap(@draftedPlayerList, @playerStatsData)
 

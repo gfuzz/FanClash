@@ -64,10 +64,12 @@ class Game < ActiveRecord::Base
   # Scraps the data from each players URL and stores in an array.
   def self.scrapData(players_url)
     playerStatsData = []
+    @scoreBoard = []
     players_url.each do |website|
       doc = Nokogiri::HTML(open(website))
       playerStatsData << doc.css('.awayStats')
       playerStatsData << doc.css('.homeBoxScorePlayerStats')
+      @scoreBoard << doc.css('#mainScoreBoard')
     end
     playerStatsData
   end
@@ -102,8 +104,48 @@ class Game < ActiveRecord::Base
     end
   end
 
-  def self.getFantasyPoints
+  def self.checkGamesOver
+    gamesOverValues = []
+    gamesOver = false
+    @scoreBoard.each do |game|
+      if game.css('#sbTime').text.include? "Final"
+        gamesOverValues << true
+      else
+        gamesOverValues << false
+      end
+    end
+    if gamesOverValues.uniq.size == 1
+      if gamesOverValues.uniq[0] != false
+        gamesOver = true
+      end
+    end
+    gamesOver
+  end
 
+  def self.getWinners(game_id)
+    userscores = []
+
+    # Gets all the users in a game.
+    usersForGame = ParticipatingUser.where(game_id: game_id)
+    userList = []
+    usersForGame.each do |user|
+      userList << User.where(id: user.user_id)[0]
+    end
+
+    # Goes through each of the users picks. Adds up their players fantasy points and
+    # gives the user a final score.
+    userList.each do |user|
+      allUsersPicks = DraftPick.where(user_id: user.id)
+      fantasyScore = 0
+      allUsersPicks.each do |pick|
+        searchDraftedPlayer = DraftedPlayer.where(id: pick.drafted_player_id, game_id: game_id)[0]
+        if searchDraftedPlayer.fantasypoints != nil
+          fantasyScore += searchDraftedPlayer.fantasypoints
+        end
+      end
+        userscores.push({"username" => "#{user.username}", :score => fantasyScore})
+    end
+    userscores.sort_by { |hsh| hsh[:score] }
   end
 
   def add_entry

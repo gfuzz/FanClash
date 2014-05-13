@@ -48,7 +48,19 @@
 
 
             <div class="usersPicks">
-            <h3><%= user.username %> Picks UserID: <%= user.id %> GameID: <%= @game.id %></h3>
+              <% theUsersPicks = Game.getUsersPicks(user.id, @game.id) %>
+            <h3><%= user.username %> Picks</h3>
+            <% @userTotal = 0 %>
+            <% theUsersPicks.each do |pickplayer| %>
+            <% pick = DraftedPlayer.where(player_id: pickplayer.id)[0] %>
+              <% if pick != nil && pick.fantasypoints != nil %>
+                <% @userTotal += pick.fantasypoints %>
+              <% end %>
+              <%= pickplayer.player_name %> - <%= pick.fantasypoints %><br/>
+            <% end %>
+            <br/>
+            <br/>
+              Total Fantasy Points: <%= @userTotal %>
             </div>
 
 

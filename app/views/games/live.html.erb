@@ -47,6 +47,15 @@
 
 
 
+            <div class="usersPicks">
+              <%= theUsersPicks = Game.getUsersPicks(user.id, @game.id) %>
+            <h3><%= user.username %> Picks</h3>
+            <% @userTotal = 0 %>
+
+
+
+            </div>
+
 
         </div>
         <div class="modal-footer">

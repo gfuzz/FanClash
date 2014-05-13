@@ -127,6 +127,8 @@ class Game < ActiveRecord::Base
 
     # Gets all the users in a game.
     usersForGame = ParticipatingUser.where(game_id: game_id)
+    theUsersCount = ParticipatingUser.where(game_id: game_id).size
+    numofWinners = theUsersCount / 2
     userList = []
     usersForGame.each do |user|
       userList << User.where(id: user.user_id)[0]
@@ -143,9 +145,9 @@ class Game < ActiveRecord::Base
           fantasyScore += searchDraftedPlayer.fantasypoints
         end
       end
-        userscores.push({"username" => "#{user.username}", :score => fantasyScore})
+      userscores.push({"username" => "#{user.username}", :score => fantasyScore})
     end
-    userscores.sort_by { |hsh| hsh[:score] }
+      userscores[0..numofWinners].sort_by { |x,y| y[:score] }
   end
 
   def add_entry

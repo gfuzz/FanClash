@@ -5,8 +5,8 @@
 
   <fieldset>
     <legend>Change your password</legend>
-    <%= f.input :password, "New password" %>
-    <%= f.input :password_confirmation, "Confirm new password" %><br />
+    <%= f.input :password, hint: "New password" %>
+    <%= f.input :password_confirmation, hint: "Confirm new password" %><br />
 
     <%= f.button :submit, "Change my password" %>
   </fieldset>

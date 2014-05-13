@@ -61,6 +61,8 @@ class GamesController < ApplicationController
         @winners = Game.getWinners(game_id)
       end
 
+      # @theUsersPicks = Game.getUsersPicks()
+
       @playerStatsDataArray = Game.sortScrap(@draftedPlayerList, @playerStatsData)
 
       if @game && @game.start_time < DateTime.now

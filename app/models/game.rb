@@ -139,7 +139,7 @@ class Game < ActiveRecord::Base
       fantasyScore = 0
       allUsersPicks.each do |pick|
         searchDraftedPlayer = DraftedPlayer.where(id: pick.drafted_player_id, game_id: game_id)[0]
-        if searchDraftedPlayer.fantasypoints != nil
+        if searchDraftedPlayer != nil && searchDraftedPlayer.fantasypoints != nil
           fantasyScore += searchDraftedPlayer.fantasypoints
         end
       end

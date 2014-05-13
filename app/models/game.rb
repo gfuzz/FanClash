@@ -19,15 +19,15 @@ class Game < ActiveRecord::Base
   end
 
   # Gets our current users picks for the game
-  # def self.getUsersPicks(user_id, game_id)
-  #   userPicks = []
-  #   allUsersPicks = DraftPick.where(user_id: user_id)
-  #   allUsersPicks.each do |pick|
-  #     searchDraftedPlayer = DraftedPlayer.where(id: pick.drafted_player_id, game_id: game_id)[0]
-  #     userPicks << Player.where(id: searchDraftedPlayer.player_id)[0]
-  #   end
-  #   userPicks
-  # end
+  def self.getUsersPicks(user_id, game_id)
+    userPicks = []
+    allUsersPicks = DraftPick.where(user_id: user_id)
+    allUsersPicks.each do |pick|
+      searchDraftedPlayer = DraftedPlayer.where(id: pick.drafted_player_id, game_id: game_id)[0]
+      userPicks << Player.where(id: searchDraftedPlayer.player_id)[0]
+    end
+    userPicks
+  end
 
   # Gets all of the users in the game.
   def self.getAllUsersForGame(game_id)

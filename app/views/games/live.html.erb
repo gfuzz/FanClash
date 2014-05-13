@@ -30,7 +30,6 @@
 <div class="userList">
 <h3>Users In Game</h3>
   <% @userList.each do |user| %>
-    <% ourUser = Game.get_user_by_username(user.username) %>
     <%= link_to "#{user.username}", "#my-picks#{user.id}", :data => {:toggle => "modal"}, :user => user %>
 
   <div class="modal fade" id="my-picks<%= user.id %>" role="dialog">
@@ -48,10 +47,17 @@
 
 
             <div class="usersPicks">
-              <% theUsersPicks = Game.getUsersPicks(user.id, @game.id) %>
+              <%  userPicks = [] %>
+             <% allUsersPicks = DraftPick.where(user_id: user.id)%>
+             <% allUsersPicks.each do |pick|%>
+               <% searchDraftedPlayer = DraftedPlayer.where(id: pick.drafted_player_id, game_id: @game.id)[0]%>
+               <% userPicks << Player.where(id: searchDraftedPlayer.player_id)[0]%>
+              <%end%>
+              <%userPicks%>
+
             <h3><%= user.username %> Picks</h3>
             <% @userTotal = 0 %>
-            <% theUsersPicks.each do |pickplayer| %>
+            <% userPicks.each do |pickplayer| %>
             <% pick = DraftedPlayer.where(player_id: pickplayer.id)[0] %>
               <% if pick != nil && pick.fantasypoints != nil %>
                 <% @userTotal += pick.fantasypoints %>

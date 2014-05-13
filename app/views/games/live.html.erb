@@ -30,6 +30,7 @@
 <div class="userList">
 <h3>Users In Game</h3>
   <% @userList.each do |user| %>
+    <% ourUser = Game.get_user_by_username(user.username) %>
     <%= link_to "#{user.username}", "#my-picks#{user.id}", :data => {:toggle => "modal"}, :user => user %>
 
   <div class="modal fade" id="my-picks<%= user.id %>" role="dialog">
@@ -43,7 +44,21 @@
             <div>
               <%= gravatar_for user %>
             </div>
-
+            <div class="usersPicks">
+              <% theUsersPicks = Game.getUsersPicks(user.id, @game.id) %>
+            <h3><%= user.username %> Picks</h3>
+            <% @userTotal = 0 %>
+              <% theUsersPicks.each do |pickplayer| %>
+              <% pick = DraftedPlayer.where(player_id: pickplayer.id)[0] %>
+                <% if pick.fantasypoints != nil %>
+                  <% @userTotal += pick.fantasypoints %>
+                <% end %>
+                <%= pickplayer.player_name %> - <%= pick.fantasypoints %><br/>
+              <% end %>
+              <br/>
+              <br/>
+                Total Fantasy Points: <%= @userTotal %>
+            </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

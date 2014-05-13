@@ -46,28 +46,7 @@
 
 
 
-            <div class="usersPicks">
-              <%  userPicks = [] %>
-             <% allUsersPicks = DraftPick.where(user_id: user.id)%>
-             <% allUsersPicks.each do |pick|%>
-               <% searchDraftedPlayer = DraftedPlayer.where(id: pick.drafted_player_id, game_id: @game.id)[0]%>
-               <% userPicks << Player.where(id: searchDraftedPlayer.player_id)[0]%>
-              <%end%>
-              <%userPicks%>
 
-            <h3><%= user.username %> Picks</h3>
-            <% @userTotal = 0 %>
-            <% userPicks.each do |pickplayer| %>
-            <% pick = DraftedPlayer.where(player_id: pickplayer.id)[0] %>
-              <% if pick != nil && pick.fantasypoints != nil %>
-                <% @userTotal += pick.fantasypoints %>
-              <% end %>
-              <%= pickplayer.player_name %> - <%= pick.fantasypoints %><br/>
-            <% end %>
-            <br/>
-            <br/>
-              Total Fantasy Points: <%= @userTotal %>
-            </div>
 
 
         </div>

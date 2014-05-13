@@ -34,11 +34,12 @@ gem 'simple_form'
 # Heroku gems
 gem 'rails_12factor', group: :production
 
-# Use RSpec, Factory-Girl and Pry-Debugger for testing
+# Use RSpec, Factory-Girl and Pry-Debugger for testing - foreman is to use our environment variables
 group :development, :test do
   gem 'rspec-rails'
   gem 'pry-debugger'
   gem 'capybara'
+  gem 'foreman'
 end
 
 group :test do

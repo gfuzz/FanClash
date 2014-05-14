@@ -92,13 +92,14 @@ Rails.application.configure do
   config.action_mailer.default :charset => "utf-8"
 
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
-    port: 587,
-    domain: ENV["GMAIL_DOMAIN"],
-    authentication: "plain",
+    address: "smtp.mandrillapp.com",
+    port: 25,
     enable_starttls_auto: true,
-    user_name: ENV["GMAIL_USERNAME"],
-    password: ENV["GMAIL_PASSWORD"],
+    domain: ENV["MANDRILL_DOMAIN"],
+    authentication: 'login',
+    user_name: ENV["MANDRILL_USERNAME"],
+    password: ENV["MANDRILL_PASSWORD"],
+    # domain: 'fan-clash.herokuapp.com'
     openssl_verify_mode: 'none'
   }
 end

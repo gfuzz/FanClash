@@ -24,6 +24,7 @@
 div.selected {
     background:#00cc00;
 }
+
 </style>
 
 <center><h2>Who will score more <a href="#fp-scoring" data-toggle="modal">Fantasy Points</a> in each matchup today?</h2></center><br />
@@ -48,6 +49,11 @@ div.selected {
 
   <div class="tier5">
     <%= render 'games/pair_select', :tier_num => 4, :draft_a => @drafted_players[8], :draft_b => @drafted_players[9] %>
+  </div>
+
+  <div class="tie">
+    <% tieplayer = Player.where(id: @drafted_players[10].player_id)[0] %>
+    <p>How many points will <%= tieplayer.player_name %> get? <input type="text" name="tiebreaker"></p>
   </div>
 </div>
 
@@ -138,6 +144,6 @@ $('.game-countdown').each(function (idx, elem) {
   var gameTime = new Date(Number(gameTimeSecondsInteger) * 1000);
   $(elem).countdown({until: gameTime, onExpiry: countdownEnd});
 });
-function countdownEnd() { 
+function countdownEnd() {
   window.location.replace("/games/live?id=<%= @game.id %>");}
 </script>

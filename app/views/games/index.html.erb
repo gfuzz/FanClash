@@ -1,3 +1,34 @@
+<style type="text/css">
+tr {
+	text-decoration: none;
+	font-family: "Century Gothic",CenturyGothic,AppleGothic,sans-serif;
+	font-size: 14px;
+	color: #eee;
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+	border-top: 0;
+}
+
+tr:nth-child(even) {
+	background-color: #2e2e2e;
+}
+
+tr:nth-child(odd) {
+	background-color: #232323;
+}
+
+.table tbody tr:hover td, .table tbody tr:hover th {
+	background-color: #151515;
+}
+
+td a {
+	color: #fcc700;
+	font-weight: bold;
+}
+
+</style>
+
 <h1>Today's Games</h1><br />
 
 <div class="row">
@@ -6,11 +37,11 @@
 			<table class="table table-hover">
 		  	<thead>
 		  		<tr>
-		  			<th>PRIZES</th>
 		  			<th>SPORT</th>
+		  			<th>PRIZES</th>
 		  			<th>BUY-IN</th>
 		  			<th>ENTRIES</th>
-		  			<th>START TIME</th>
+		  			<th>LIVE IN</th>
 		  			<th>ENTER</th>
 		  			<th>LOCKS IN</th>
 		  		</tr>
@@ -18,8 +49,8 @@
 		  	<tbody>
 					<% @games.each do |game| %>
 						<tr>
+						  <td><a href=""><%= game.sport %></a></td>
 						  <td><%= game.number_to_currency(game.prizes) %></td>
-						  <td><%= game.sport %></td>
 						  <td><%= game.number_to_currency(game.buy_in) %></td>
 						  <td><%= game.entries %></td>
 						  <td><%= game.start_time.strftime('%d %b, %Y - %I:%M%p (CST)') %></td>

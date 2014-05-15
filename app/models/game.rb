@@ -65,12 +65,14 @@ class Game < ActiveRecord::Base
   def self.scrapData(players_url)
     playerStatsData = []
     @scoreBoard = []
-    players_url.each do |website|
-      doc = Nokogiri::HTML(open(website))
-      playerStatsData << doc.css('.awayStats')
-      playerStatsData << doc.css('.homeBoxScorePlayerStats')
-      @scoreBoard << doc.css('#mainScoreBoard')
-    end
+      players_url.each do |website|
+        if website != ""
+          doc = Nokogiri::HTML(open(website))
+          playerStatsData << doc.css('.awayStats')
+          playerStatsData << doc.css('.homeBoxScorePlayerStats')
+          @scoreBoard << doc.css('#mainScoreBoard')
+        end
+      end
     playerStatsData
   end
 
@@ -127,13 +129,15 @@ class Game < ActiveRecord::Base
 
     # Gets all the users in a game.
     usersForGame = ParticipatingUser.where(game_id: game_id)
+    theUsersCount = ParticipatingUser.where(game_id: game_id).count - 1
+    numofWinners = theUsersCount / 2
     userList = []
     usersForGame.each do |user|
       userList << User.where(id: user.user_id)[0]
     end
 
     # Goes through each of the users picks. Adds up their players fantasy points and
-    # gives the user a final score.
+    # gives the user a final score and puts in an array.
     userList.each do |user|
       allUsersPicks = DraftPick.where(user_id: user.id)
       fantasyScore = 0
@@ -143,9 +147,35 @@ class Game < ActiveRecord::Base
           fantasyScore += searchDraftedPlayer.fantasypoints
         end
       end
-        userscores.push({"username" => "#{user.username}", :score => fantasyScore})
+      userscores.push(:username => "#{user.username}", :score => fantasyScore)
     end
-    userscores.sort_by { |hsh| hsh[:score] }
+    userscores.sort_by! { |hsh| hsh[:score]}.reverse!
+    lastPlaceScore = userscores[numofWinners]
+    tiebreakerPeople = []
+    userscores[numofWinners..-1].each do |score|
+      if score[:score] == lastPlaceScore[:score]
+        tiebreakerPeople << score
+      end
+    end
+    tieWinner = [{:username => "", :tieGuess => 0, :difference => 99999999}]
+    tiePlayerPoints = DraftedPlayer.where(game_id: game_id)[10].fantasypoints
+
+    if tiebreakerPeople.empty? == false
+      tiebreakerPeople.each do |score|
+        person = User.where(username: score[:username])[0]
+        tie_amount = ParticipatingUser.where(game_id: game_id, user_id: person.id)[0].tiebreaker
+        diff = tiePlayerPoints > tie_amount ? tiePlayerPoints - tie_amount : tie_amount - tiePlayerPoints;
+        if diff < tieWinner[0][:difference]
+          tieWinner.delete_at(0)
+          tieWinner.push({:username => "#{person.username}", :tieGuess => tie_amount, :difference => diff})
+        end
+      end
+    end
+
+    if tieWinner.empty? == false
+      userscores[numofWinners] = tieWinner
+    end
+    userscores[0..numofWinners]
   end
 
   def add_entry

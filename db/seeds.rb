@@ -145,6 +145,50 @@ Player.create([
     height:"6'",
     weight:"185",
     picture:"https://starstreet.s3.amazonaws.com/images/headshots/1912/195x270.jpg"
+  },
+  {
+    player_name:"Trevor Ariza",
+    player_number:"1",
+    average_fpoints:"28.2",
+    team:"Washington Wizards",
+    position:"F",
+    age:28,
+    height:"6'8",
+    weight:"210",
+    picture:"https://starstreet.s3.amazonaws.com/images/headshots/1903/195x270.jpg"
+  },
+  {
+    player_name:"DeAndre Jordan",
+    player_number:"6",
+    average_fpoints:"34.2",
+    team:"Los Angeles Clippers",
+    position:"C",
+    age:25,
+    height:"265",
+    weight:"6'11",
+    picture:"http://imagesnl.draftstreet.com/nba/players/4497.jpg"
+  },
+  {
+    player_name:"Kevin Durant",
+    player_number:"35",
+    average_fpoints:"49.9",
+    team:"Oklahoma City Thunder",
+    position:"F",
+    age:25,
+    height:"6'9",
+    weight:"235",
+    picture:"https://starstreet.s3.amazonaws.com/images/headshots/2100/195x270.jpg"
+  },
+  {
+    player_name:"Blake Griffin",
+    player_number:"32",
+    average_fpoints:"42",
+    team:"Los Angeles Clippers",
+    position:"F",
+    age:25,
+    height:"250",
+    weight:"6'10",
+    picture:"https://starstreet.s3.amazonaws.com/images/headshots/2102/195x270.jpg"
   }
   ])
 
@@ -161,51 +205,51 @@ DraftedPlayer.create ([
   {
     game_id: 1,
     player_id: 1,
-    tier:0,
+    tier:0
   },
   {
     game_id: 1,
     player_id: 2,
-    tier:0,
+    tier:0
   },
   {
     game_id: 1,
     player_id: 3,
-    tier:1,
+    tier:1
   },
   {
     game_id: 1,
     player_id: 4,
-    tier:1,
+    tier:1
   },
   {
     game_id: 1,
     player_id: 5,
-    tier:2,
+    tier:2
   },
   {
     game_id: 1,
     player_id: 6,
-    tier:2,
+    tier:2
   },
   {
     game_id: 1,
     player_id: 7,
-    tier:3,
+    tier:3
   },
   {
     game_id: 1,
     player_id: 8,
-    tier:3,
+    tier:3
   },
   {
     game_id: 1,
     player_id: 9,
-    tier:4,
+    tier:4
   },
   {
     game_id: 1,
     player_id: 10,
-    tier:4,
+    tier:4
   }
   ])

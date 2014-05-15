@@ -28,7 +28,7 @@ class DraftPicksController < ApplicationController
     if game.current_entries < game.allowed_entries
       # Adds a player to ParticipatingUser table, only if the player does not exist within this table and associated with the game they are submitting to.
       if ParticipatingUser.where(user_id: current_user.id, game_id: game_id).count == 0
-        pu = ParticipatingUser.new(user_id: current_user.id, game_id: game_id)
+        pu = ParticipatingUser.new(user_id: current_user.id, game_id: game_id, tiebreaker: params[:tiebreaker])
         pu.save
 
         game.add_entry

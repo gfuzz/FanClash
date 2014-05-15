@@ -27,6 +27,21 @@ td a {
 	font-weight: bold;
 }
 
+.mlb-icon {
+	display: inline-block;
+width: 21px;
+height: 20px;
+	background: transparent url("https://www.draftkings.com/_assets/images/icons/sports-sprite.png?2") 0 0 no-repeat;
+}
+
+.nba-icon {
+	display: inline-block;
+width: 21px;
+height: 20px;
+background: transparent url("https://www.draftkings.com/_assets/images/icons/sports-sprite.png?2") 0 0 no-repeat;
+background-position: 0 -40px;
+}
+
 </style>
 
 <h1>Today's Games</h1><br />
@@ -38,6 +53,7 @@ td a {
 		  	<thead>
 		  		<tr>
 		  			<th>SPORT</th>
+		  			<th>CONTEST</th>
 		  			<th>PRIZES</th>
 		  			<th>BUY-IN</th>
 		  			<th>ENTRIES</th>
@@ -49,6 +65,16 @@ td a {
 		  	<tbody>
 					<% @games.each do |game| %>
 						<tr>
+							<% if game.sport.include? ("MLB") %>
+								<td><span class="mlb-icon" title="MLB"></span></td>
+							<% elsif game.sport.include? ("Baseball") %>
+								<td><span class="mlb-icon" title="MLB"></span></td>
+							<% elsif game.sport.include? ("NBA")  %>
+								<td><span class="nba-icon" title="NBA"></span></td>
+							<% elsif game.sport.include? ("Basketball") %>
+								<td><span class="nba-icon" title="NBA"></span></td>
+							<% end %>
+
 						  <td><a href=""><%= game.sport %></a></td>
 						  <td><%= game.number_to_currency(game.prizes) %></td>
 						  <td><%= game.number_to_currency(game.buy_in) %></td>

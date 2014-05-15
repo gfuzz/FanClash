@@ -46,3 +46,11 @@ body {
 	padding-top: 30px;
 	width: 200px;
 }
+.table-scroll-main {
+	height: 450px;
+	overflow: auto
+}
+.table-scroll-profile {
+	height: 250px;
+	overflow: auto
+}

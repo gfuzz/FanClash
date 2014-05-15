@@ -2,39 +2,41 @@
 
 <div class="row">
 	<div class="col-sm-12">
-		<table class="table table-hover">
-	  	<thead>
-	  		<tr>
-	  			<th>PRIZES</th>
-	  			<th>SPORT</th>
-	  			<th>BUY-IN</th>
-	  			<th>ENTRIES</th>
-	  			<th>START TIME</th>
-	  			<th>ENTER</th>
-	  			<th>LOCKS IN</th>
-	  		</tr>
-	  	</thead>
-	  	<tbody>
-				<% @games.each do |game| %>
-					<tr>
-					  <td><%= game.number_to_currency(game.prizes) %></td>
-					  <td><%= game.sport %></td>
-					  <td><%= game.number_to_currency(game.buy_in) %></td>
-					  <td><%= game.entries %></td>
-					  <td><%= game.start_time.strftime('%d %b, %Y - %I:%M%p (CST)') %></td>
-					  <% now = DateTime.now %>
-						<% if now < game.start_time %>
-						  <td id="countdown-hide-game"><%= link_to 'Play', games_show_path({:id => game.id}) %></td>
-              <td id="countdown-show-game"><a href="live?id=<%= game.id %>">Watch</a></td>
-              <td id="countdown-game-started"><div class="game-countdown" data-start-time="<%= game.start_time.to_i %>"></div></td>
-            <% else %>
-              <td><a href="live?id=<%= game.id %>">Watch</a></td>
-              <td>Locked</td>
-            <% end %>
-				  </tr>
-				<% end %>
-	  	</tbody>
-		</table>
+		<div class="table-scroll-main">
+			<table class="table table-hover">
+		  	<thead>
+		  		<tr>
+		  			<th>PRIZES</th>
+		  			<th>SPORT</th>
+		  			<th>BUY-IN</th>
+		  			<th>ENTRIES</th>
+		  			<th>START TIME</th>
+		  			<th>ENTER</th>
+		  			<th>LOCKS IN</th>
+		  		</tr>
+		  	</thead>
+		  	<tbody>
+					<% @games.each do |game| %>
+						<tr>
+						  <td><%= game.number_to_currency(game.prizes) %></td>
+						  <td><%= game.sport %></td>
+						  <td><%= game.number_to_currency(game.buy_in) %></td>
+						  <td><%= game.entries %></td>
+						  <td><%= game.start_time.strftime('%d %b, %Y - %I:%M%p (CST)') %></td>
+						  <% now = DateTime.now %>
+							<% if now < game.start_time %>
+							  <td id="countdown-hide-game"><%= link_to 'Play', games_show_path({:id => game.id}) %></td>
+	              <td id="countdown-show-game"><a href="live?id=<%= game.id %>">Watch</a></td>
+	              <td id="countdown-game-started"><div class="game-countdown" data-start-time="<%= game.start_time.to_i %>"></div></td>
+	            <% else %>
+	              <td><a href="live?id=<%= game.id %>">Watch</a></td>
+	              <td>Locked</td>
+	            <% end %>
+					  </tr>
+					<% end %>
+		  	</tbody>
+			</table>
+		</div>
 	</div>
 </div>
 

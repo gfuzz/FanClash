@@ -3,7 +3,7 @@ class GamesController < ApplicationController
 
   # Lists all the games
   def index
-    @games = Game.all.sort_by { |game| game.start_time }
+    @games = Game.all     #.sort_by { |game| game.start_time }
   end
 
   # Checks if user is signed in, they can buy-in and view a game to submit.
@@ -37,7 +37,6 @@ class GamesController < ApplicationController
     if user_signed_in?
       game_id = params[:id]
       @game = Game.find(game_id)
-
       # Gets our current users picks for the game
       @userPicks = Game.getUsersPicks(current_user.id, game_id)
 

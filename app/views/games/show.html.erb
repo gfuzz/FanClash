@@ -26,61 +26,62 @@ div.selected {
 }
 
 </style>
+<div class="container">
+  <center><h2>Who will score more <a href="#fp-scoring" data-toggle="modal">Fantasy Points</a> in each matchup today?</h2></center><br />
 
-<center><h2>Who will score more <a href="#fp-scoring" data-toggle="modal">Fantasy Points</a> in each matchup today?</h2></center><br />
+  <div class="pickem">
+  <%= form_tag("/draft_picks", method: "post", :id => "myform")  %>
+    <div class="tier1">
+      <%= render 'games/pair_select', :tier_num => 0, :draft_a => @drafted_players[0], :draft_b => @drafted_players[1] %>
+    </div>
 
-<div class="pickem">
-<%= form_tag("/draft_picks", method: "post", :id => "myform")  %>
-  <div class="tier1">
-    <%= render 'games/pair_select', :tier_num => 0, :draft_a => @drafted_players[0], :draft_b => @drafted_players[1] %>
+    <div class="tier2">
+      <%= render 'games/pair_select', :tier_num => 1, :draft_a => @drafted_players[2], :draft_b => @drafted_players[3] %>
+    </div>
+
+    <div class="tier3">
+      <%= render 'games/pair_select', :tier_num => 2, :draft_a => @drafted_players[4], :draft_b => @drafted_players[5] %>
+    </div>
+
+    <div class="tier4">
+      <%= render 'games/pair_select', :tier_num => 3, :draft_a => @drafted_players[6], :draft_b => @drafted_players[7] %>
+    </div>
+
+    <div class="tier5">
+      <%= render 'games/pair_select', :tier_num => 4, :draft_a => @drafted_players[8], :draft_b => @drafted_players[9] %>
+    </div>
+
+    <div class="tie">
+      <% tieplayer = Player.where(id: @drafted_players[10].player_id)[0] %>
+      <p>How many points will <%= tieplayer.player_name %> get? <input type="text" name="tiebreaker"></p>
+    </div>
   </div>
 
-  <div class="tier2">
-    <%= render 'games/pair_select', :tier_num => 1, :draft_a => @drafted_players[2], :draft_b => @drafted_players[3] %>
-  </div>
+  <center><%= submit_tag( "Choose My Players", class: "btn-primary" ) %>
+    <div class="game-countdown counter" data-start-time="<%= @game.start_time.to_i %>"></div>
+  </center>
 
-  <div class="tier3">
-    <%= render 'games/pair_select', :tier_num => 2, :draft_a => @drafted_players[4], :draft_b => @drafted_players[5] %>
-  </div>
-
-  <div class="tier4">
-    <%= render 'games/pair_select', :tier_num => 3, :draft_a => @drafted_players[6], :draft_b => @drafted_players[7] %>
-  </div>
-
-  <div class="tier5">
-    <%= render 'games/pair_select', :tier_num => 4, :draft_a => @drafted_players[8], :draft_b => @drafted_players[9] %>
-  </div>
-
-  <div class="tie">
-    <% tieplayer = Player.where(id: @drafted_players[10].player_id)[0] %>
-    <p>How many points will <%= tieplayer.player_name %> get? <input type="text" name="tiebreaker"></p>
-  </div>
-</div>
-
-<center><%= submit_tag( "Choose My Players", class: "btn-primary" ) %>
-  <div class="game-countdown counter" data-start-time="<%= @game.start_time.to_i %>"></div>
-</center>
-
-<div class="modal fade" id="fp-scoring" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">HOW FANTASY POINTS ARE CALCULATED</h4>
-      </div>
-      <div class="modal-body">
-        <h4>NBA</h4>
-        <ul>
-          <li>Point = 1</li>
-          <li>Rebound = 1.25</li>
-          <li>Assist = 1.5</li>
-          <li>Block = 2</li>
-          <li>Steal = 2</li>
-          <li>Turnover = -1</li>
-        </ul>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  <div class="modal fade" id="fp-scoring" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">HOW FANTASY POINTS ARE CALCULATED</h4>
+        </div>
+        <div class="modal-body">
+          <h4>NBA</h4>
+          <ul>
+            <li>Point = 1</li>
+            <li>Rebound = 1.25</li>
+            <li>Assist = 1.5</li>
+            <li>Block = 2</li>
+            <li>Steal = 2</li>
+            <li>Turnover = -1</li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
@@ -142,7 +143,7 @@ $('.game-countdown').each(function (idx, elem) {
   var gameTimeSecondsString = $(elem).data('start-time');
   var gameTimeSecondsInteger = parseInt(gameTimeSecondsString,10);
   var gameTime = new Date(Number(gameTimeSecondsInteger) * 1000);
-  $(elem).countdown({until: gameTime, onExpiry: countdownEnd});
+  $(elem).countdown({until: gameTime, onExpiry: countdownEnd, layout: '{hn}:{mn}:{sn}'});
 });
 function countdownEnd() {
   window.location.replace("/games/live?id=<%= @game.id %>");}

@@ -1,63 +1,64 @@
-<div class="row">
-  <aside class="span4">
-    <section>
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.full_name %>
-      </h1>
-      <p>Member Since: <%= @user.created_at.strftime('%d %b, %Y') %></p>
-      <% if current_user.username == params[:id] %>
-        <a href="/users/edit">Edit Profile</a>
-      <% end %>
-    </section>
-  </aside>
-</div>
-<% if current_user.username == params[:id] %>
-  <h1>My Games</h1><br />
-<% else %>
-  <h1><%= "#{@user.username}" %>'s Games</h1><br /> 
-<% end %>
+<div class="container">
+  <div class="row">
+    <aside class="span4">
+      <section>
+        <h1>
+          <%= gravatar_for @user %>
+          <%= @user.full_name %>
+        </h1>
+        <p>Member Since: <%= @user.created_at.strftime('%d %b, %Y') %></p>
+        <% if current_user.username == params[:id] %>
+          <a href="/users/edit">Edit Profile</a>
+        <% end %>
+      </section>
+    </aside>
+  </div>
+  <% if current_user.username == params[:id] %>
+    <h1>My Games</h1><br />
+  <% else %>
+    <h1><%= "#{@user.username}" %>'s Games</h1><br /> 
+  <% end %>
 
-<div class="row">
-  <div class="col-sm-12">
-    <div class="table-scroll-profile">
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>PRIZES</th>
-            <th>SPORT</th>
-            <th>BUY-IN</th>
-            <th>START TIME</th>
-            <% if current_user.username == params[:id] %>
-              <th>EDIT</th>
-            <% end %>
-            <th>LOCKS IN</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @games.each do |game| %>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="table-scroll-profile">
+        <table class="table table-hover">
+          <thead>
             <tr>
-              <td><%= game.number_to_currency(game.prizes) %></td>
-              <td><%= game.sport %></td>
-              <td><%= game.number_to_currency(game.buy_in) %></td>
-              <td><%= game.start_time.strftime('%d %b, %Y - %I:%M%p (CST)') %></td>
-              <% now = DateTime.now %>
-              <% if now < game.start_time %>
-                <% if current_user.username == params[:id] %>
-                  <td id="countdown-hide-game"><%= link_to 'Edit', games_show_path({:id => game.id}) %></td>
-                <% end %>
-                <td id="countdown-show-game"><a href="games/live?id=<%= game.id %>">Watch</a></td>
-                <td id="countdown-game-started"><div class="game-countdown" data-start-time="<%= game.start_time.to_i %>"></div></td>
-              <% else %>
-                <td><a href="games/live?id=<%= game.id %>">Watch</a></td>
-                <td>Locked</td>
+              <th>PRIZES</th>
+              <th>SPORT</th>
+              <th>BUY-IN</th>
+              <th>START TIME</th>
+              <% if current_user.username == params[:id] %>
+                <th>EDIT</th>
               <% end %>
+              <th>LOCKS IN</th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            <% @games.each do |game| %>
+              <tr>
+                <td><%= game.number_to_currency(game.prizes) %></td>
+                <td><%= game.sport %></td>
+                <td><%= game.number_to_currency(game.buy_in) %></td>
+                <td><%= game.start_time.strftime('%d %b, %Y - %I:%M%p (CST)') %></td>
+                <% now = DateTime.now %>
+                <% if now < game.start_time %>
+                  <% if current_user.username == params[:id] %>
+                    <td id="countdown-hide-game"><%= link_to 'Edit', games_show_path({:id => game.id}) %></td>
+                  <% end %>
+                  <td id="countdown-show-game"><a href="games/live?id=<%= game.id %>">Watch</a></td>
+                  <td id="countdown-game-started"><div class="game-countdown" data-start-time="<%= game.start_time.to_i %>"></div></td>
+                <% else %>
+                  <td><a href="games/live?id=<%= game.id %>">Watch</a></td>
+                  <td>Locked</td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
-
 <%= render 'games/countdown_script' %>

@@ -8,23 +8,9 @@
 </head>
 <body>
   <%= render 'partials/navbar' %>
-  <div class="container">
-    <% if flash[:notice] %>
-      <div class="alert alert-success">
-        <button class="close" data-dismiss="alert">x</button>
-        <%= flash[:notice] %>
-      </div>
-    <% end %>
-    <% if flash[:alert] %>
-      <div class="alert alert-danger">
-        <button class="close" data-dismiss="alert">x</button>
-        <%= flash[:alert] %>
-      </div>
-    <% end %>
 
-    <%= yield %>
+  <%= yield %>
 
-    <%= render 'partials/footer' %>
-  </div>
+  <%= render 'partials/footer' %>
 </body>
 </html>

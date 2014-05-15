@@ -21,8 +21,8 @@ Rails.application.routes.draw do
 
   get '/:id', to: "profiles#show"
 
-  resources "draft_picks"
-  # POST /draft_picks -> CREATE
+  resources 'draft_picks'
+  resources 'home'
 
 
 

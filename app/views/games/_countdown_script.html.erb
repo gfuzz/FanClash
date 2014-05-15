@@ -3,7 +3,7 @@ $('.game-countdown').each(function (idx, elem) {
 	var gameTimeSecondsString = $(elem).data('start-time');
 	var gameTimeSecondsInteger = parseInt(gameTimeSecondsString,10);
 	var gameTime = new Date(Number(gameTimeSecondsInteger) * 1000);
-  $(elem).countdown({until: gameTime, onExpiry: countdownEnd});
+  $(elem).countdown({until: gameTime, onExpiry: countdownEnd, format: 'HMS', layout: '{hn}:{mn}:{sn}'});
 });
 function countdownEnd() { 
   $('#countdown-hide-game').hide();  

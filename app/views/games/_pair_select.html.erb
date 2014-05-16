@@ -1,11 +1,19 @@
 <div class="radioButton">
   <input type="radio" name="tier<%= tier_num %>" value="<%= draft_a.id %>" />
-  <img src="<%= draft_a.player.picture %>">
-  <%= draft_a.player.player_name %>
+  <div class="p-img-left"><img src="<%= draft_a.player.picture %>"></div>
+  <div class="p-info">
+    <h4><%= draft_a.player.player_name %></h4>
+    <p><%= draft_a.player.team %> - #<%= draft_a.player.player_number %> - <%= draft_a.player.position %> - AVG. PPG <%= draft_a.player.average_fpoints %></p>
+  </div>
 </div>
+
+<div class="versus-box"><h3>VS</h3></div>
 
 <div class="radioButton">
   <input type="radio" name="tier<%= tier_num %>" value="<%= draft_b.id %>" />
-  <img src="<%= draft_b.player.picture %>">
-  <%= draft_b.player.player_name %>
+  <div class="p-img-right"><img src="<%= draft_b.player.picture %>"></div>
+  <div class="p-info">
+    <h4><%= draft_b.player.player_name %></h4>
+    <p><%= draft_b.player.team %> - #<%= draft_b.player.player_number %> - <%= draft_b.player.position %> - AVG. PPG <%= draft_b.player.average_fpoints %></p>
+  </div>
 </div>

@@ -1,5 +1,7 @@
 body {
  	padding-top: 75px;
+ 	background-color: #333;
+ 	color: #fff;
  }
 #headerwrap {
 	background: url("NBA-2014-big.jpg") no-repeat center top;

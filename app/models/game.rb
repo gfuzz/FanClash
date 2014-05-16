@@ -24,7 +24,9 @@ class Game < ActiveRecord::Base
     allUsersPicks = DraftPick.where(user_id: user_id)
     allUsersPicks.each do |pick|
       searchDraftedPlayer = DraftedPlayer.where(id: pick.drafted_player_id, game_id: game_id)[0]
-      userPicks << Player.where(id: searchDraftedPlayer.player_id)[0]
+      if searchDraftedPlayer != nil
+        userPicks << Player.where(id: searchDraftedPlayer.player_id)[0]
+      end
     end
     userPicks
   end

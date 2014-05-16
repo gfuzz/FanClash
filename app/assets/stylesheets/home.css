@@ -3,6 +3,10 @@ body {
  	background-color: #333;
  	color: #fff;
  }
+
+ input {
+ 	color: #000;
+ }
 #headerwrap {
 	background: url("NBA-2014-big.jpg") no-repeat center top;
 	margin-top: -50px;
@@ -119,7 +123,7 @@ background-position: 0 -40px;
 }
 
 .modal-body {
-	background: transparent url("https://www.draftkings.com/_assets/images/contest-pop/popup-bg.jpg") 0 0 no-repeat;
+	background: transparent url("https://www.draftkings.com/_assets/images/contest-pop/popup-bg.jpg") 0 0;
 }
 
 .modal-content {

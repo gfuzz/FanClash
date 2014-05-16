@@ -235,3 +235,15 @@ background-position: 0 -40px;
    height: 250px; /* Fix a height here */
    overflow: auto; /* Optionally you can also use overflow: scroll; */
 }
+
+.modal-buttons {
+	text-align: right;
+}
+
+.dk-button {
+	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #232323), color-stop(1, #444));
+	color: #fcc700;
+}
+.close {
+	color: #fff;
+}

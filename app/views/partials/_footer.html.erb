@@ -1,21 +1,61 @@
  <!-- Footer -->
-    <footer id="footer" class="main-footer">
-    <hr>
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-6 col-sm-5">
-            <p><a href="#">Facebook</a> | <a href="#">Twitter</a></p>
+<footer id="footer" class="main-footer">
+<hr>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6 col-sm-5">
+        <p><a href="#">Facebook</a> | <a href="#">Twitter</a></p>
+      </div>
+      <div class="col-xs-6 col-sm-3">
+        <p>2014 &copy; FanClash</p>
+      </div>
+      <div class="col-xs-8 col-sm-4">
+        <p class="pull-right"><a href="#">Privacy</a></p>
+        <p class="pull-right"><a href="#">Terms</a> |&nbsp;</p>
+        <p class="pull-right"><a href="#contact" data-toggle="modal">Contact Us</a> |&nbsp;</p>
+        <p class="pull-right"><a href="#">About</a> |&nbsp;</p>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- End Footer -->
+
+
+<!-- Contact Modal -->
+<div class="modal fade" id="contact" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form class="form-horizontal">
+        <div class="modal-body">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+          <h3>Contact Us</h3><hr>
+          <div class="form-group">
+            <label for="contact-name" class="col-md-2 control-label">Name:</label>
+            <div class="col-md-10">
+              <input type="text" class="form-control" id="contact-name" placeholder="Full Name"></input>
+            </div>
           </div>
-          <div class="col-xs-6 col-sm-3">
-            <p>2014 &copy; FanClash</p>
+
+          <div class="form-group">
+            <label for="contact-email" class="col-md-2 control-label">Email:</label>
+            <div class="col-md-10">
+              <input type="email" class="form-control" id="contact-email" placeholder="you@example.com"></input>
+            </div>
           </div>
-          <div class="col-xs-8 col-sm-4">
-            <p class="pull-right"><a href="#">Privacy</a></p>
-            <p class="pull-right"><a href="#">Terms</a> |&nbsp;</p>
-            <p class="pull-right"><a href="#">Help</a> |&nbsp;</p>
-            <p class="pull-right"><a href="#">About</a> |&nbsp;</p>
+
+          <div class="form-group">
+            <label for="contact-message" class="col-md-2 control-label">Message:</label>
+            <div class="col-md-10">
+              <textarea class="form-control" rows="6"></textarea>
+            </div>
+          </div>
+          <div class="modal-buttons"><button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+
+            <button type="button" class="btn dk-button" data-dismiss="modal">Send Message</button>
           </div>
         </div>
-      </div>
-    </footer>
-    <!-- End Footer -->
+      </form>
+    </div>
+  </div>
+</div>
+<!-- End Contact Modal -->

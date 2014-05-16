@@ -71,6 +71,9 @@ body {
 	height: 250px;
 	overflow: auto
 }
+legend {
+	color: #fff;
+}
 
 tr {
 	text-decoration: none;

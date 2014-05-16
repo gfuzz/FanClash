@@ -1,3 +1,170 @@
+<style type="text/css">
+tr {
+  text-decoration: none;
+  font-family: "Century Gothic",CenturyGothic,AppleGothic,sans-serif;
+  font-size: 14px;
+  color: #eee;
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+  border-top: 0;
+}
+
+tr:nth-child(even) {
+  background-color: #2e2e2e;
+}
+
+tr:nth-child(odd) {
+  background-color: #232323;
+}
+
+.table tbody tr:hover td, .table tbody tr:hover th {
+  background-color: #151515;
+}
+
+td a {
+  color: #fcc700;
+  font-weight: bold;
+}
+
+.mlb-icon {
+display: inline-block;
+width: 21px;
+height: 20px;
+background: transparent url("https://www.draftkings.com/_assets/images/icons/sports-sprite.png?2") 0 0 no-repeat;
+}
+
+.nba-icon {
+  display: inline-block;
+width: 21px;
+height: 20px;
+background: transparent url("https://www.draftkings.com/_assets/images/icons/sports-sprite.png?2") 0 0 no-repeat;
+background-position: 0 -40px;
+}
+
+.modal-body {
+  background: transparent url("https://www.draftkings.com/_assets/images/contest-pop/popup-bg.jpg") 0 0 no-repeat;
+}
+
+.modal-content {
+    border: 8px solid black;
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.countdown-timer {
+  padding-top: 20px;
+  position: absolute;
+  width: 209px;
+  height: 118px;
+  top: 25px;
+  right: 30px;
+  text-align: center;
+  font-size: 17px;
+  font-weight: bold;
+  background: transparent url("https://www.draftkings.com/_assets/images/contest-pop/countdown-bg.png") 0 0 no-repeat;
+  font: 18px "Century Gothic", Arial, Helvetica, sans-serif;
+  color: #fff;
+}
+
+#contest-pop-timer {
+  padding: 5px 10px 12px;
+  color: #ffc600;
+  font-size: 28px;
+}
+.start-time {
+  padding-top: 9px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.header-bar {
+  font: 20px "nimbus","HelveticaNeue-CondensedBold","Helvetica Neue","Arial Black",Arial,"Lucida Grande",sans-serif;
+  text-transform: uppercase;
+  padding-top: 20px;
+  margin: 0;
+  color:white;
+}
+
+.header-bar h1 {
+  margin-top: 0;
+  font-size: 30px;
+  margin-bottom: 0;
+}
+
+.header-bar h2 {
+  font: 18px/18px "Century Gothic",CenturyGothic,AppleGothic,sans-serif;
+  margin-top: 0;
+}
+
+.tabs {
+  position: relative;
+  height: 30px;
+  background: transparent url("https://www.draftkings.com/_assets/images/contest-pop/tabs-bar.png") bottom left no-repeat;
+  margin-bottom: 5px;
+  padding-top: 93px;
+}
+
+.panel {
+  background: transparent url("https://www.draftkings.com/_assets/images/contest-pop/panel-bg.png") 0 38px no-repeat;
+  border-bottom: 1px solid #111;
+  position: relative;
+  margin-bottom: 0;
+}
+
+.header1 {
+  height: 38px;
+  position: relative;
+  z-index: 1102;
+  background: transparent url("https://www.draftkings.com/_assets/images/contest-pop/header-bar.png") top left no-repeat;
+  border-top-left-radius: 10px;
+  -moz-border-radius-topleft: 10px;
+  border-top-right-radius: 10px;
+  -moz-border-radius-topright: 10px;
+  margin-bottom: 0;
+}
+
+.header1 h3 {
+  position: relative;
+  text-transform: uppercase;
+  color: #fff;
+  font: 25px "nimbus","HelveticaNeue-CondensedBold","Helvetica Neue","Arial Black",Arial,"Lucida Grande",sans-serif;
+  text-transform: uppercase;
+  padding-top: 5px;
+  padding-left: 10px;
+  margin-bottom: 0;
+}
+
+.userslistitem {
+  width: 100%;
+
+  height: 30px;
+}
+
+.userslistitem:nth-child(even) {
+  background-color: #232323;
+}
+
+.userslistitem:nth-child(odd) {
+  background-color: #2e2e2e;
+}
+
+.userslistitem p {
+  padding-top: 5px;
+  padding-left: 20px;
+  color: white;
+}
+
+.containerofusers {
+   height: 250px; /* Fix a height here */
+   overflow: auto; /* Optionally you can also use overflow: scroll; */
+}
+
+</style>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
 <div class="container">
@@ -35,35 +202,51 @@
       <%= link_to "#{user.username}", "#my-picks#{user.id}", :data => {:toggle => "modal"}, :user => user %>
 
     <div class="modal fade" id="my-picks<%= user.id %>" role="dialog">
-      <div class="modal-dialog">
+      <div class="modal-dialog" style="width:654px;">
         <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title"><%= user.username %></h4>
-          </div>
-            <div class="modal-body" style="height:260px; max-height:540px; width:630px; max-width:630px;">
-              <div>
+            <div class="modal-body" style="height: 529px; padding-top: 0px;">
+              <div style="padding-top:30px;">
                 <%= gravatar_for user %>
               </div>
-              <div class="usersPicks">
-                <% theUsersPicks = Game.getUsersPicks(user.id, @game.id) %>
-              <h3><%= user.username %> Picks</h3>
-              <% @userTotal = 0 %>
-                <% theUsersPicks.each do |pickplayer| %>
-                <% pick = DraftedPlayer.where(player_id: pickplayer.id)[0] %>
-                  <% if pick.fantasypoints != nil %>
-                    <% @userTotal += pick.fantasypoints %>
-                  <% end %>
-                  <%= pickplayer.player_name %> - <%= pick.fantasypoints %><br/>
-                <% end %>
-                <br/>
-                <br/>
-                  Total Fantasy Points: <%= @userTotal %>
+
+
+              <div class="header-bar">
+                      <h1><%= user.username %></h1>
+                      <h2>
+                        <span style="color: #accf1f; font-size:13px;">Member since: <%= user.created_at.strftime('%d %b') %></span>
+                      </h2>
+                  </div>
+
+
+            <% theUsersPicks = Game.getUsersPicks(user.id, @game.id) %>
+            <% @userTotal = 0 %>
+
+            <div class="content">
+              <div class="panel" style="width:87%; float:left;">
+                <div class="header1">
+                  <h3>Picks</h3>
+                  <div class="containerofusers">
+                    <% theUsersPicks.each do |pickplayer| %>
+                    <% pick = DraftedPlayer.where(player_id: pickplayer.id)[0] %>
+                      <% if pick.fantasypoints != nil %>
+                        <% @userTotal += pick.fantasypoints %>
+                      <% end %>
+                      <div class="userslistitem"><p><%= pickplayer.player_name %> - <%= pick.fantasypoints %></p></div>
+                    <% end %>
+                  <div class="userslistitem" style="background-color:#accf1f;"><p style="color:black;">Total Points: <%= @userTotal %></p></div>
+                  </div>
+                </div>
               </div>
+
+
+
+
+
+
+
+
+
             </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
         </div>
       </div>
     </div>

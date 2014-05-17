@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     get "sign_in", to: "devise/sessions#new", as: :sign_in
   end
 
-  root 'home#index'
+  root 'games#index'
 
   get '/:id', to: "profiles#show"
 

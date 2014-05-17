@@ -256,3 +256,26 @@ background-position: 0 -40px;
 .close {
 	color: #fff;
 }
+.sp-main-title {
+	color: #fcc700;
+}
+.sp-mini-title {
+	color: #b60f0f;
+	font-weight: bold;
+}
+.about-pic {	
+	height: 250px;
+	width: 250px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	background-color: #666;
+	border: 1px solid #ccc;
+	padding: 2px;
+}
+.team-member {
+	text-align: center;
+}

@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   get 'profiles/show'
   post 'games/update'
 
+  get 'static_pages/privacy', as: 'privacy'
+  get 'static_pages/about', as: 'about'
+  get 'static_pages/terms', as: 'terms'
+
   mount RailsAdmin::Engine => '//admin', as: 'rails_admin'
   devise_for :users
 

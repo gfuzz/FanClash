@@ -1,12 +1,23 @@
+<style type="text/css">
+
+.usernameheader h1 {
+  font: 60px "nimbus","HelveticaNeue-CondensedBold","Helvetica Neue","Arial Black",Arial,"Lucida Grande",sans-serif;
+  margin-top: 0;
+  color: white;
+}
+
+</style>
+
+
 <div class="container">
   <div class="row">
     <aside class="span4">
       <section>
-        <h1>
           <%= gravatar_for @user %>
+        <div class="usernameheader"><h1>
           <%= @user.full_name %>
-        </h1>
-        <p>Member Since: <%= @user.created_at.strftime('%d %b, %Y') %></p>
+        </h1></div>
+        <p style="color: #accf1f; font-size:20px;">Member Since: <%= @user.created_at.strftime('%d %b, %Y') %></p>
         <% if current_user.username == params[:id] %>
           <a href="/users/edit">Edit Profile</a>
         <% end %>
@@ -16,7 +27,7 @@
   <% if current_user.username == params[:id] %>
     <h1>My Games</h1><br />
   <% else %>
-    <h1><%= "#{@user.username}" %>'s Games</h1><br /> 
+    <h1><%= "#{@user.username}" %>'s Games</h1><br />
   <% end %>
 
   <div class="row">

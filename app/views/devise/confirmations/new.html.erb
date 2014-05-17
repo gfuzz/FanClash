@@ -1,4 +1,4 @@
-
+<div class="container">
 <%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { class: "form-horizontal", method: :post }) do |f| %>
   <%= devise_error_messages! %>
 
@@ -11,3 +11,4 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div>

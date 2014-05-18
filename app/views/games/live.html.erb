@@ -163,93 +163,144 @@ background-position: 0 -40px;
    overflow: auto; /* Optionally you can also use overflow: scroll; */
 }
 
+.playersList {
+  width: 100%;
+  height: 410px;
+}
+
+.actualPlayer {
+  height: 70px;
+  background: #2a6496;
+  margin-bottom: 10px;
+}
+
+.playerImage img {
+  height: 70px;
+  float: left;
+  margin-right: 15px;
+}
+
+.playerName {
+  margin-top: 10px;
+  text-transform: uppercase;
+  color: #fff;
+  font: 26px "nimbus","HelveticaNeue-CondensedBold","Helvetica Neue","Arial Black",Arial,"Lucida Grande",sans-serif;
+  float: left;
+}
+
+.playerStats {
+padding-top: 44px;
+width: 400px;
+font: 13px/13px "Century Gothic",CenturyGothic,AppleGothic,sans-serif;
+}
+
+.totalFantasy {
+  width:420px;
+  margin-right: 0;
+  height: 70px;
+  font: 26px "nimbus","HelveticaNeue-CondensedBold","Helvetica Neue","Arial Black",Arial,"Lucida Grande",sans-serif;
+  color:white;
+}
+
+
+
+
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
-<div class="container">
+<div class="container" style="height:635px;">
   <center><h1><%= @game.sport %></h1></center>
-  <div class="usersPicks">
-    <p>This is just for testing purposes. Need to display this information better later.<p>
-  <h3>All players and stats:</h3>
-    <% @userPicks.each do |player| %>
-      <% pick = DraftedPlayer.where(player_id: player.id)[0] %>
-      <%= player.player_name %> - Points: <%= pick.points %> - Rebounds: <%= pick.rebounds %> -Assists: <%= pick.assists %> -Blocks: <%= pick.blocks %> -Steals: <%= pick.steals %> -Turnovers: <%= pick.turnovers %> -Fantasy Points: <%= pick.fantasypoints %><br/>
-    <% end %>
-    <% @total = 0 %>
-    <% @userPicks.each do |player| %>
-      <% pick = DraftedPlayer.where(player_id: player.id)[0] %>
-      <% if pick.fantasypoints != nil %>
-        <% @total += pick.fantasypoints %>
+
+  <div class="panel" style="width:47%; float:left;">
+    <div class="header1" style="z-index:0;">
+    <h3>Picks</h3>
+      <div class="playersList">
+      <% @userPicks.each do |player| %>
+        <div class="actualPlayer">
+          <% pick = DraftedPlayer.where(player_id: player.id)[0] %>
+          <% playerObject = Player.where(id: player.id)[0] %>
+          <div class="playerImage"><img src="<%= playerObject.picture %>"></div>
+          <div class="playerName"><%= player.player_name %></div>
+          <div class="playerStats"><%= pick.points %> PTS, <%= pick.rebounds %> REB, <%= pick.assists %> AST, <%= pick.blocks %> BLK,  <%= pick.steals %> STL, <%= pick.turnovers %> TO, <%= pick.fantasypoints %> FP</div>
+        </div>
       <% end %>
+      </div>
+    </div>
+  </div>
+
+  <% @total = 0 %>
+  <% @userPicks.each do |player| %>
+    <% pick = DraftedPlayer.where(player_id: player.id)[0] %>
+    <% if pick.fantasypoints != nil %>
+      <% @total += pick.fantasypoints %>
     <% end %>
-      Total Fantasy Points: <%= @total %>
-  </div>
+  <% end %>
 
-  <div class="winners">
-    <% if @winners != nil %>
-    <h2>Winners</h2>
-      <%= @winners %>
-    <% end %>
-  </div>
-  <div class="opponentsPicks">
-  </div>
+  <div class="totalFantasy">Total Fantasy Points: <%= @total %></div>
 
-  <div class="userList">
-  <h3>Users In Game</h3>
-    <% @userList.each do |user| %>
-      <% ourUser = Game.get_user_by_username(user.username) %>
-      <%= link_to "#{user.username}", "#my-picks#{user.id}", :data => {:toggle => "modal"}, :user => user %>
 
-    <div class="modal fade" id="my-picks<%= user.id %>" role="dialog">
-      <div class="modal-dialog" style="width:654px;">
-        <div class="modal-content">
+  <div class="panel" style="width:47%; float:left; left:550px; bottom: 69px;">
+    <div class="header1" style="z-index:0;">
+      <h3>Users In Game</h3>
+    </div>
+      <% @userList.each do |user| %>
+      <div class="userslistitem">
+        <% ourUser = Game.get_user_by_username(user.username) %>
+        <p><%= link_to "#{user.username}", "#my-picks#{user.id}", :data => {:toggle => "modal"}, :user => user %></p>
+      </div>
+
+      <div class="modal fade" id="my-picks<%= user.id %>" role="dialog">
+        <div class="modal-dialog" style="width:654px;">
+          <div class="modal-content">
             <div class="modal-body" style="height: 529px; padding-top: 0px;">
               <div style="padding-top:30px;">
                 <%= gravatar_for user %>
               </div>
 
-
               <div class="header-bar">
-                      <h1><%= user.username %></h1>
-                      <h2>
-                        <span style="color: #accf1f; font-size:13px;">Member since: <%= user.created_at.strftime('%d %b') %></span>
-                      </h2>
-                  </div>
+                <h1><%= user.username %></h1>
+                <h2><span style="color: #accf1f; font-size:13px;">Member since: <%= user.created_at.strftime('%d %b') %></span></h2>
+              </div>
 
+              <% theUsersPicks = Game.getUsersPicks(user.id, @game.id) %>
+              <% @userTotal = 0 %>
 
-            <% theUsersPicks = Game.getUsersPicks(user.id, @game.id) %>
-            <% @userTotal = 0 %>
-
-            <div class="content">
-              <div class="panel" style="width:87%; float:left;">
-                <div class="header1">
-                  <h3>Picks</h3>
-                  <div class="containerofusers">
-                    <% theUsersPicks.each do |pickplayer| %>
-                    <% pick = DraftedPlayer.where(player_id: pickplayer.id)[0] %>
-                      <% if pick.fantasypoints != nil %>
-                        <% @userTotal += pick.fantasypoints %>
+              <div class="content">
+                <div class="panel" style="width:87%; float:left;">
+                  <div class="header1">
+                    <h3>Picks</h3>
+                    <div class="containerofusers">
+                      <% theUsersPicks.each do |pickplayer| %>
+                        <% pick = DraftedPlayer.where(player_id: pickplayer.id)[0] %>
+                        <% if pick.fantasypoints != nil %>
+                          <% @userTotal += pick.fantasypoints %>
+                        <% end %>
+                        <div class="userslistitem"><p><%= pickplayer.player_name %> - <%= pick.fantasypoints %></p></div>
                       <% end %>
-                      <div class="userslistitem"><p><%= pickplayer.player_name %> - <%= pick.fantasypoints %></p></div>
-                    <% end %>
-                  <div class="userslistitem" style="background-color:#accf1f;"><p style="color:black;">Total Points: <%= @userTotal %></p></div>
+                      <div class="userslistitem" style="background-color:#accf1f;"><p style="color:black;">Total Points: <%= @userTotal %></p></div>
+                    </div>
                   </div>
                 </div>
               </div>
-
-
-
-
-
-
-
-
-
             </div>
+          </div>
         </div>
       </div>
-    </div>
+      <% end %>
+  </div>
+
+  <div class="winners">
+    <% if @winners != nil %>
+      <h2>Winners</h2>
+      <%= @winners %>
     <% end %>
   </div>
+
+
+
 </div>
+
+
+
+

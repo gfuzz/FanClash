@@ -10,11 +10,15 @@
 				<%= image_tag("lebron.jpg", class: "main-pic") %>
 			</div>
 		</div>
+		<% if !user_signed_in? %>
 		<div class="row">
 			<div class="col-sm-12">
-				<%= submit_tag( "Sign Up Now", class: "btn btn-success btn-lg" ) %>
+				<p><%= link_to "Sign Up Now", sign_up_path, class: "btn btn-success btn-lg" %></p>
+				<p>OR</p>
+				<p><%= link_to "Sign In", sign_in_path, class: "btn btn-warning btn-lg" %></p>
 			</div>
 		</div>
+		<% end %>
 	</div>
 
 	<h1>Today's Games</h1><br />

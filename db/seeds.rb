@@ -189,6 +189,127 @@ Player.create([
     height:"250",
     weight:"6'10",
     picture:"https://starstreet.s3.amazonaws.com/images/headshots/2102/195x270.jpg"
+  },
+  {
+    "player_name": "Anthony Rendon",
+    "player_number": "6",
+    "average_fpoints": "286",
+    "team": "Washington Nationals",
+    "position": "2B",
+    "age": 23,
+    "height": "6",
+    "weight": "195",
+    "picture": "https://starstreet.s3.amazonaws.com/images/headshots/8124/195x270.jpg"
+  },
+  {
+    "player_name": "Yan Gomes",
+    "player_number": "10",
+    "average_fpoints": "198",
+    "team": "Cleveland Indians",
+    "position": "C",
+    "age": 26,
+    "height": "6'2",
+    "weight": "215",
+    "picture": "https://starstreet.s3.amazonaws.com/images/headshots/6816/195x270.jpg"
+  },
+  {
+    "player_name": "Asdrubal Cabrera",
+    "player_number": "13",
+    "average_fpoints": "239",
+    "team": "Cleveland Indians",
+    "position": "SS",
+    "age": 28,
+    "height": "6",
+    "weight": "205",
+    "picture": "https://starstreet.s3.amazonaws.com/images/headshots/2457/195x270.jpg"
+  },
+  {
+    "player_name": "Ian Kinsler",
+    "player_number": "3",
+    "average_fpoints": "299",
+    "team": "Detriot Tigers",
+    "position": "2B",
+    "age": 31,
+    "height": "6",
+    "weight": "200",
+    "picture": "https://starstreet.s3.amazonaws.com/images/headshots/2726/195x270.jpg"
+  },
+  {
+    "player_name": "Howie Kendrick",
+    "player_number": "47",
+    "average_fpoints": "322",
+    "team": "Los Angeles Angels",
+    "position": "2B",
+    "age": 30,
+    "height": "5'10",
+    "weight": "205",
+    "picture": "https://starstreet.s3.amazonaws.com/images/headshots/2197/195x270.jpg"
+  },
+  {
+    "player_name": "Miguel Cabrera",
+    "player_number": "24",
+    "average_fpoints": "335",
+    "team": "Detriot Tigers",
+    "position": "1B",
+    "age": 31,
+    "height": "6'4",
+    "weight": "240",
+    "picture": "https://starstreet.s3.amazonaws.com/images/headshots/3016/195x270.jpg"
+  },
+  {
+    "player_name": "Albert Pujols",
+    "player_number": "5",
+    "average_fpoints": "345",
+    "team": "Los Angeles Angels",
+    "position": "1B",
+    "age": 34,
+    "height": "6'3",
+    "weight": "230",
+    "picture": "https://starstreet.s3.amazonaws.com/images/headshots/2105/195x270.jpg"
+  },
+  {
+    "player_name": "Mike Minor",
+    "player_number": "36",
+    "average_fpoints": "48",
+    "team": "Atlanta Braves",
+    "position": "SP",
+    "age": 26,
+    "height": "6'4",
+    "weight": "205",
+    "picture": "https://starstreet.s3.amazonaws.com/images/headshots/2288/195x270.jpg"
+  },
+  {
+    "player_name": "Drew Smyly",
+    "player_number": "33",
+    "average_fpoints": "115",
+    "team": "Detriot Tigers",
+    "position": "SP",
+    "age": 24,
+    "height": "6'3",
+    "weight": "190",
+    "picture": "https://starstreet.s3.amazonaws.com/images/headshots/6495/195x270.jpg"
+  },
+  {
+    "player_name": "Stephen Strasburg",
+    "player_number": "37",
+    "average_fpoints": "207",
+    "team": "Washington Nationals",
+    "position": "SP",
+    "age": 25,
+    "height": "6'4",
+    "weight": "211",
+    "picture": "https://starstreet.s3.amazonaws.com/images/headshots/2592/195x270.jpg"
+  },
+  {
+    "player_name": "Garrett Richards",
+    "player_number": "43",
+    "average_fpoints": "205",
+    "team": "Los Angeles Angels",
+    "position": "SP",
+    "age": 25,
+    "height": "6'3",
+    "weight": "215",
+    "picture": "https://starstreet.s3.amazonaws.com/images/headshots/6864/195x270.jpg"
   }
   ])
 

@@ -63,7 +63,7 @@
 	              <td id="countdown-show-game"><a href="/games/live?id=<%= game.id %>">Watch</a></td>
 	              <td id="countdown-game-started"><div class="game-countdown" data-start-time="<%= game.start_time.to_i %>"></div></td>
 	            <% else %>
-	              <td><a href="live?id=<%= game.id %>">Watch</a></td>
+	              <td><a href="/games/live?id=<%= game.id %>">Watch</a></td>
 	              <td>Locked</td>
 	            <% end %>
 					  </tr>

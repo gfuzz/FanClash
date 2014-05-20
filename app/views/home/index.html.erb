@@ -1,25 +1,23 @@
-<div id="headerwrap">
+<div class="container">
   <div class="intro">
-    <div class="container">
-      <div class="row intro-box">
-        <div class="col-sm-7">
-          <h3>What is FanClash?</h3>
-          <p>FanClash is a web-based fantasy sports application that uses the pick five gameplay mode. FanClash lets you play for free with your friends and determine who is the sports master.</p>
-          <h3>How to Play?</h3>
-          <ol>
-            <li>Pick Five is one day contests where you pick five head-to-head fantasy matchups, there will also be a question that will be used as a tiebreaker.</li>
-            <li>The goal is to pick the player in the head-to-head matchup who will score more fantasy points that night.</li>
-            <li>The user with will accumulate the amount of points that their picks got.</li>
-            <li>If two or more users have the most points and chose the same players whoever answered the tiebreaker question more accurately will be the winner.</li>
-            <li>You may edit your Pick Five picks up until the game begins, at which time the game entry locks.</li>
-            <li>Games are considered complete when the final box scores are collected.</li>
-            <li>Play for free and challenge your friends.</li>
-          </ol>
-        </div>
-        <div class="col-sm-4 col-sm-offset-1">
-        	<%= image_tag("player-pick.png", id: "main-pic") %>
-        </div>
+    <h2>Join Today</h2>
+    <h3>Play Fantasy pick five for MLB and NBA</h3>
+    <div class="row">
+      <div class="col-sm-6">
+        <%= image_tag("johnny-cueto.jpg", class: "main-pic") %>
+      </div>
+      <div class="col-sm-6">
+        <%= image_tag("lebron.jpg", class: "main-pic") %>
       </div>
     </div>
+    <% if !user_signed_in? %>
+    <div class="row">
+      <div class="col-sm-12">
+        <p><%= link_to "Sign Up Now", sign_up_path, class: "btn btn-success btn-lg" %></p>
+        <p>OR</p>
+        <p><%= link_to "Sign In", sign_in_path, class: "btn btn-warning btn-lg" %></p>
+      </div>
+    </div>
+    <% end %>
   </div>
 </div>

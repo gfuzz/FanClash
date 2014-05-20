@@ -17,6 +17,15 @@ GIT
       safe_yaml (~> 1.0)
       sass-rails (~> 4.0)
 
+GIT
+  remote: https://github.com/stripe/stripe-ruby
+  revision: ca07ef08fd438433f36127493a9468bd6222378a
+  specs:
+    stripe (1.11.0)
+      json (~> 1.8.1)
+      mime-types (~> 1.25)
+      rest-client (~> 1.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -157,6 +166,8 @@ GEM
     rdoc (4.1.1)
       json (~> 1.4)
     remotipart (1.2.1)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rspec-core (2.14.8)
     rspec-expectations (2.14.5)
       diff-lcs (>= 1.1.3, < 2.0)
@@ -229,4 +240,5 @@ DEPENDENCIES
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   simple_form
+  stripe!
   uglifier (>= 1.3.0)

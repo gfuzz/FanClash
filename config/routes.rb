@@ -21,12 +21,13 @@ Rails.application.routes.draw do
     get "sign_in", to: "devise/sessions#new", as: :sign_in
   end
 
-  root 'games#index'
+  root 'home#index'
 
   get '/:id', to: "profiles#show"
 
   resources 'draft_picks'
   resources 'home'
+  resources :charges
 
 
 

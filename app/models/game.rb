@@ -159,7 +159,7 @@ class Game < ActiveRecord::Base
         tiebreakerPeople << score
       end
     end
-    tieWinner = [{:username => "", :tieGuess => 0, :difference => 99999999}]
+    tieWinner = []
     tiePlayerPoints = DraftedPlayer.where(game_id: game_id)[10].fantasypoints
 
     if tiebreakerPeople.empty? == false
@@ -174,7 +174,7 @@ class Game < ActiveRecord::Base
       end
     end
 
-    if tieWinner.empty? == false
+    if tieWinner != []
       userscores[numofWinners] = tieWinner
     end
     userscores[0..numofWinners]

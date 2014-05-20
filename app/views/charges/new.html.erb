@@ -1,0 +1,16 @@
+<div class="container">
+<%= form_tag charges_path do %>
+  <div class="form-group">
+    <%= label_tag :amount, 'Amount:', class: "control-label" %>
+    <div class="controls">
+      <%= text_field_tag :amount, params[:amount], id: "amount" %>
+    </div>
+  </div>
+
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+  				data-email="<%= current_user.email %>"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="Deposit"
+          data-amount="500"></script>
+<% end %>
+</div>

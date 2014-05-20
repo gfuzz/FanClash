@@ -52,6 +52,9 @@ gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 # Helps get data from other websites.
 gem 'nokogiri'
 
+# Use Stripe as a payment system
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
 # Opens the webpage to get the data.
 # gem 'open-uri'
 

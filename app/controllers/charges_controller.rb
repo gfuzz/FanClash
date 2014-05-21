@@ -21,8 +21,7 @@ class ChargesController < ApplicationController
 
 	  # Add money to the users account
 	  deposit_amount = @amount.to_f
-	  binding.pry
-	  current_user.money += deposit_amount
+	  current_user.money += (deposit_amount / 100)
 	  current_user.save!
 
 		flash[:notice] = 'You have successfully deposited money in your account.'

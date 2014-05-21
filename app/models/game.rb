@@ -82,15 +82,25 @@ class Game < ActiveRecord::Base
   def self.scrapDataBaseball(players_url)
     playerStatsDataBaseball = []
     @scoreBoard = []
+    scores = []
       players_url.each do |website|
         if website != ""
           doc = Nokogiri::HTML(open(website))
           playerStatsDataBaseball << doc.css('.away')
           playerStatsDataBaseball << doc.css('.home')
-          @scoreBoard << doc.css('.gameStatus')
+          scores << doc.css('.gtScoreboard')
         end
+          scores.each do |score|
+            array = []
+            array << score.css('.awayTeam a').text
+            array << score.css('.awayTeam .score').text
+            array << score.css('.homeTeam a').text
+            array << score.css('.homeTeam .score').text
+            array << score.css('.gameStatus').text
+            @scoreBoard << array
+          end
       end
-    playerStatsDataBaseball
+    [playerStatsDataBaseball] + [@scoreBoard]
   end
 
   # Sorts the data then puts it in the database.
@@ -191,6 +201,24 @@ class Game < ActiveRecord::Base
     gamesOver
   end
 
+  def self.checkGamesOverBaseball
+    gamesOverValues = []
+    gamesOver = false
+    @scoreBoard.each do |game|
+      if game[4] == "Final"
+        gamesOverValues << true
+      else
+        gamesOverValues << false
+      end
+    end
+    if gamesOverValues.uniq.size == 1
+      if gamesOverValues.uniq[0] != false
+        gamesOver = true
+      end
+    end
+    gamesOver
+  end
+
   def self.getWinners(game_id)
     userscores = []
 
@@ -240,7 +268,7 @@ class Game < ActiveRecord::Base
     end
 
     if tieWinner.empty? == false
-      userscores[numofWinners] = tieWinner
+      userscores[numofWinners] = tieWinner[0]
     end
     userscores[0..numofWinners]
   end

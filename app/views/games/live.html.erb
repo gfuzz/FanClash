@@ -1,3 +1,29 @@
+<script type="text/javascript">
+  $(function() {
+    var _scroll = {
+      delay: 1000,
+      easing: 'linear',
+      items: 1,
+      duration: 0.018,
+      timeoutDuration: 0,
+      pauseOnHover: 'immediate'
+    };
+    $('#ticker-1').carouFredSel({
+      width: 1000,
+      align: false,
+      items: {
+        width: 'variable',
+        height: 35,
+        visible: 4
+      },
+      scroll: _scroll
+    });
+
+    //  set carousels to be 100% wide
+    $('.caroufredsel_wrapper').css('width', '100%');
+  });
+</script>
+
 <style type="text/css">
 tr {
   text-decoration: none;
@@ -215,101 +241,210 @@ font: 13px/13px "Century Gothic",CenturyGothic,AppleGothic,sans-serif;
 
 
 
+/*NEW SCRIPT*/
+
+
+
+#wrapper {
+  width: 100%;
+  margin: -100px 0 0 0;
+  position: absolute;
+  left: 0;
+  top: 50%;
+}
+#wrapper h3 {
+  font-size: 20px;
+  text-align: center;
+}
+
+#wrapper > div {
+  background-color: #232323;
+  width: 100%;
+  height: 60px;
+  padding: 15px 0;
+  overflow: hidden;
+}
+#wrapper > div.first {
+  border-bottom: none;
+}
+
+#wrapper dl {
+  display: block;
+  margin: 0;
+}
+#wrapper dt, #wrapper dd {
+  display: block;
+  float: left;
+  margin: 0 10px;
+  padding: 5px 10px;
+}
+#wrapper dt {
+  background-color: black;
+  color: #fcc700;
+}
+#wrapper dd {
+  color: #333;
+  margin-right: 50px;
+}
+
+
 
 </style>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+
+<!-- <head>
+  <meta http-equiv="refresh" content="60">
+</head> -->
+
 
 <div class="container" style="height:635px;">
   <center><h1><%= @game.sport %></h1></center>
 
-
-  <% if @game.sport.include? "NBA" %>
-  <div class="panel" style="width:47%; float:left;">
-    <div class="header1" style="z-index:0;">
-    <h3>Picks</h3>
-      <div class="playersList">
-      <% @userPicks.each do |player| %>
-        <div class="actualPlayer">
-          <% pick = DraftedPlayer.where(player_id: player.id)[0] %>
-          <% playerObject = Player.where(id: player.id)[0] %>
-          <div class="playerImage"><img src="<%= playerObject.picture %>"></div>
-          <div class="playerName"><%= player.player_name %></div>
-          <div class="playerStats"><%= pick.points %> PTS, <%= pick.rebounds %> REB, <%= pick.assists %> AST, <%= pick.blocks %> BLK,  <%= pick.steals %> STL, <%= pick.turnovers %> TO, <%= pick.fantasypoints %> FP</div>
-        </div>
-      <% end %>
-      </div>
-    </div>
-  </div>
-  <% end %>
-
-
-  <% if @game.sport.include? "MLB" %>
-  <div class="panel" style="width:47%; float:left;">
-    <div class="header1" style="z-index:0;">
-    <h3>Picks</h3>
-      <div class="playersList">
-      <% @userPicks.each do |player| %>
-        <div class="actualPlayer">
-          <% pick = DraftedPlayer.where(player_id: player.id)[0] %>
-          <% playerObject = Player.where(id: player.id)[0] %>
-          <% if playerObject.position == "SP" || playerObject.position == "P" || playerObject.position == "RP" %>
-            <div class="playerImage"><img src="<%= playerObject.picture %>"></div>
-            <div class="playerName"><%= player.player_name %></div>
-            <div class="playerStats"><%= pick.points %> Strikeouts, <%= pick.rebounds %> Hits, <%= pick.assists %> Homeruns, <%= pick.fantasypoints %> FP</div>
+  <div class="row">
+    <div class="col-md-6">
+      <% if @game.sport.include? "NBA" %>
+      <div class="panel">
+        <div class="header1" style="z-index:0;">
+        <h3>Picks</h3>
+          <div class="playersList">
+          <% @userPicks.each do |player| %>
+            <div class="actualPlayer">
+              <% pick = DraftedPlayer.where(player_id: player.id)[0] %>
+              <% playerObject = Player.where(id: player.id)[0] %>
+              <div class="playerImage"><img src="<%= playerObject.picture %>"></div>
+              <div class="playerName"><%= player.player_name %></div>
+              <div class="playerStats"><%= pick.points %> PTS, <%= pick.rebounds %> REB, <%= pick.assists %> AST, <%= pick.blocks %> BLK,  <%= pick.steals %> STL, <%= pick.turnovers %> TO, <%= pick.fantasypoints %> FP</div>
             </div>
-          <% else %>
-          <div class="playerImage"><img src="<%= playerObject.picture %>"></div>
-          <div class="playerName"><%= player.player_name %></div>
-          <div class="playerStats"><%= pick.points %> Homeruns, <%= pick.rebounds %> RBI, <%= pick.assists %> Runs, <%= pick.blocks %> Stike Outs,  <%= pick.steals %> Hits, <%= pick.fantasypoints %> FP</div>
+          <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+
+      <% if @game.sport.include? "MLB" %>
+
+      <div class="panel">
+        <div class="header1" style="z-index:0;">
+        <h3>Picks</h3>
+          <div class="playersList">
+          <% @userPicks.each do |player| %>
+            <div class="actualPlayer">
+              <% pick = DraftedPlayer.where(player_id: player.id)[0] %>
+              <% playerObject = Player.where(id: player.id)[0] %>
+              <% if playerObject.position == "SP" || playerObject.position == "P" || playerObject.position == "RP" %>
+                <div class="playerImage"><img src="<%= playerObject.picture %>"></div>
+                <div class="playerName"><%= player.player_name %></div>
+                <div class="playerStats"><%= pick.points %> Strikeouts, <%= pick.rebounds %> Hits, <%= pick.assists %> Homeruns, <%= pick.fantasypoints %> FP</div>
+                </div>
+              <% else %>
+              <div class="playerImage"><img src="<%= playerObject.picture %>"></div>
+              <div class="playerName"><%= player.player_name %></div>
+              <div class="playerStats"><%= pick.points %> Homeruns, <%= pick.rebounds %> RBI, <%= pick.assists %> Runs, <%= pick.blocks %> Stike Outs,  <%= pick.steals %> Hits, <%= pick.fantasypoints %> FP</div>
+              </div>
+            <% end %>
+          <% end %>
+          </div>
+        <div class="totalFantasy">Total Fantasy Points: <%= @total %></div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+
+      <% @total = 0 %>
+      <% @userPicks.each do |player| %>
+        <% pick = DraftedPlayer.where(player_id: player.id)[0] %>
+        <% if pick.fantasypoints != nil %>
+          <% @total += pick.fantasypoints %>
+        <% end %>
+      <% end %>
+
+    <div class="col-md-6">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="panel" style="margin-bottom:75px;">
+            <div class="header1" style="z-index:0;">
+            <h3>Scores</h3>
+
+
+            <div id="wrapper" style="padding-top:118px;">
+                  <div class="first">
+                    <div class="caroufredsel_wrapper" style="display: block; text-align: start; float: none; position: relative; top: auto; right: auto; bottom: auto; left: auto; z-index: auto; width: 100%; height: 35px; margin: 0px; overflow: hidden;"><dl id="ticker-1" style="text-align: left; float: none; position: absolute; top: 0px; right: auto; bottom: auto; margin: 0px; width: 7276px; height: 35px; z-index: auto;">
+
+                    <% @scoreBoard.each do |scores| %>
+                        <dt><%= scores[0] %>:<%= scores[1] %> - <%= scores[2] %>:<%= scores[3] %></dt>
+                    <% end -%>
+
+                  </dl></div>
+                  </div>
+                </div>
+
+            </div>
+          </div>
+        </div>
+
+
+  <div class="row">
+    <div class="panel">
+
+      <% if @winners != nil %>
+
+        <div class="header1" style="z-index:0;">
+          <h3>Winners</h3>
+        </div>
+
+        <% count = 0 %>
+        <% @winners.each do |winner| %>
+          <div class="userslistitem2">
+            <% count += 1 %>
+            <%= "#{count})  #{winner[:username]}" %>
           </div>
         <% end %>
-      <% end %>
+
       </div>
-    </div>
-  </div>
-  <% end %>
+      </div>
+      </div>
+      </div>
+
+      <% else %>
 
 
-  <% @total = 0 %>
-  <% @userPicks.each do |player| %>
-    <% pick = DraftedPlayer.where(player_id: player.id)[0] %>
-    <% if pick.fantasypoints != nil %>
-      <% @total += pick.fantasypoints %>
-    <% end %>
-  <% end %>
 
-  <div class="totalFantasy">Total Fantasy Points: <%= @total %></div>
-
-
-  <div class="panel" style="width:47%; float:left; left:550px; bottom: 69px;">
-    <div class="header1" style="z-index:0;">
-      <h3>Users In Game</h3>
-    </div>
-      <% count = 0 %>
-      <% userscores = [] %>
-     <% @userList.each do |user| %>
-        <% allUsersPicks = DraftPick.where(user_id: user.id)%>
-        <% fantasyScore = 0%>
-        <% allUsersPicks.each do |pick|%>
-        <%   searchDraftedPlayer = DraftedPlayer.where(id: pick.drafted_player_id, game_id: @game.id)[0]%>
-        <%   if searchDraftedPlayer != nil && searchDraftedPlayer.fantasypoints != nil %>
-        <%     fantasyScore += searchDraftedPlayer.fantasypoints %>
-        <%   end %>
+      <div class="header1" style="z-index:0;">
+        <h3>Users In Game</h3>
+      </div>
+        <% count = 0 %>
+        <% userscores = [] %>
+       <% @userList.each do |user| %>
+          <% allUsersPicks = DraftPick.where(user_id: user.id)%>
+          <% fantasyScore = 0%>
+          <% allUsersPicks.each do |pick|%>
+          <%   searchDraftedPlayer = DraftedPlayer.where(id: pick.drafted_player_id, game_id: @game.id)[0]%>
+          <%   if searchDraftedPlayer != nil && searchDraftedPlayer.fantasypoints != nil %>
+          <%     fantasyScore += searchDraftedPlayer.fantasypoints %>
+          <%   end %>
+          <% end %>
+          <% userscores.push(:user => user, :score => fantasyScore) %>
         <% end %>
-        <% userscores.push(:user => user, :score => fantasyScore) %>
-      <% end %>
-      <% userscores.sort_by! { |hsh| hsh[:score]}.reverse! %>
+        <% userscores.sort_by! { |hsh| hsh[:score]}.reverse! %>
 
 
 
-      <% userscores.each do |user| %>
-      <div class="userslistitem2">
-        <% count += 1 %>
-        <% userID = user[:user].id %>
-        <% usersUserName = user[:user].username %>
-        <%= "#{count}) " %><%= link_to "#{usersUserName}", "#my-picks#{userID}", :data => {:toggle => "modal"}, :user => user[:user] %> Points: <%= user[:score] %>
+          <% userscores.each do |user| %>
+          <div class="userslistitem2">
+            <% count += 1 %>
+            <% userID = user[:user].id %>
+            <% usersUserName = user[:user].username %>
+            <%= "#{count}) " %><%= link_to "#{usersUserName}", "#my-picks#{userID}", :data => {:toggle => "modal"}, :user => user[:user] %> Points: <%= user[:score] %>
+          </div>
+
+
+
       </div>
+    </div>
+
+  </div>
+</div>
 
       <div class="modal fade" id="my-picks<%= "#{userID}" %>" role="dialog">
         <div class="modal-dialog" style="width:654px;">
@@ -349,19 +484,13 @@ font: 13px/13px "Century Gothic",CenturyGothic,AppleGothic,sans-serif;
         </div>
       </div>
       <% end %>
+      <% end %>
   </div>
 
-  <div class="winners">
-    <% if @winners != nil %>
-      <h2>Winners</h2>
-      <%= @winners %>
-    <% end %>
-  </div>
 
 
 
 </div>
-
 
 
 

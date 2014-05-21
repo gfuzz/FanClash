@@ -53,16 +53,26 @@ class GamesController < ApplicationController
         # Scraps the data from each players URL and stores in an array.
         @playerStatsData = Game.scrapData(@allDraftedPlayersURL)
         @playerStatsDataArray = Game.sortScrap(@draftedPlayerList, @playerStatsData)
+
       end
 
       if @game.sport.include? "MLB"
         # Scraps the data from each players URL and stores in an array.
-        @playerStatsData = Game.scrapDataBaseball(@allDraftedPlayersURL)
+        combined = Game.scrapDataBaseball(@allDraftedPlayersURL)
+        @playerStatsData = combined[0][0]
+        @scoreBoard = combined[1]
         @playerStatsDataArray = Game.sortScrapBaseball(@draftedPlayerList, @playerStatsData)
       end
 
-      # Checks to see if all the games are over and returns a true or false value.
-      @gamesOver = Game.checkGamesOver
+      if @game.sport.include? "NBA"
+        # Checks to see if all the games are over and returns a true or false value.
+        @gamesOver = Game.checkGamesOver
+      end
+
+      if @game.sport.include? "MLB"
+        # Checks to see if all the games are over and returns a true or false value.
+        @gamesOver = Game.checkGamesOverBaseball
+      end
 
       # If all games are over equals true then it gets the winners.
       if @gamesOver == true

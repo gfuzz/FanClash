@@ -14,4 +14,5 @@
 //= require jquery.plugin
 //= require jquery.countdown
 //= require jquery_ujs
-//= require_tree .
+//= require jquery.carouFredSel-6.0.4-packed.js
+//= require bootstrap.js

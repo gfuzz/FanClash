@@ -68,7 +68,7 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'capistrano', '~> 3.1.0'
 gem 'capistrano-bundler', '~> 1.1.2'
 gem 'capistrano-rails', '~> 1.1.1'
-gem 'dotenv'
+gem 'dotenv-rails', :groups => [:development, :test]
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 

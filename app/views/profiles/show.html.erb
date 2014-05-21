@@ -17,6 +17,11 @@
         <div class="usernameheader"><h1>
           <%= @user.full_name %>
         </h1></div>
+        <div class="span4 pull-right">
+          <h3>Amount in Account:</h3>
+          <center><h4>$<%= @user.money %></h4></center>
+          <center><%= link_to "Deposit Money", new_charge_path, class: "btn btn-success btn-lg" %></center>
+        </div>
         <p style="color: #accf1f; font-size:20px;">Member Since: <%= @user.created_at.strftime('%d %b, %Y') %></p>
         <% if current_user.username == params[:id] %>
           <a href="/users/edit">Edit Profile</a>

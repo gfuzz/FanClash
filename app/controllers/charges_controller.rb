@@ -6,10 +6,10 @@ class ChargesController < ApplicationController
 
 	def create
 	  # Amount in cents
-	  @amount = 500
+	  @amount = params[:amount]
 	  customer = Stripe::Customer.create(
 	    :email => current_user.email,
-	    :card  => params[:stripeToken]
+	    :card  => params[:token][:id]
 	  )
 
 	  charge = Stripe::Charge.create(
@@ -18,11 +18,19 @@ class ChargesController < ApplicationController
 	    :description => 'Rails Stripe customer',
 	    :currency    => 'usd'
 	  )
+
+	  # Add money to the users account
+	  deposit_amount = @amount.to_f
+	  binding.pry
+	  current_user.money += deposit_amount
+	  current_user.save!
+
 		flash[:notice] = 'You have successfully deposited money in your account.'
 		redirect_to "/#{current_user.username}"
 
 	rescue Stripe::CardError => e
 	  flash[:error] = e.message
+		redirect_to "/#{current_user.username}"
 	  # redirect_to charges_path
 	end
 end

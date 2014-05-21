@@ -189,6 +189,237 @@ Player.create([
     height:"250",
     weight:"6'10",
     picture:"https://starstreet.s3.amazonaws.com/images/headshots/2102/195x270.jpg"
+  },
+  {
+    player_name: "Anthony Rendon",
+    player_number: "6",
+    average_fpoints: "286",
+    team: "Washington Nationals",
+    position: "2B",
+    age: 23,
+    height: "6",
+    weight: "195",
+    picture: "https://starstreet.s3.amazonaws.com/images/headshots/8124/195x270.jpg"
+  },
+  {
+    player_name: "Yan Gomes",
+    player_number: "10",
+    average_fpoints: "198",
+    team: "Cleveland Indians",
+    position: "C",
+    age: 26,
+    height: "6'2",
+    weight: "215",
+    picture: "https://starstreet.s3.amazonaws.com/images/headshots/6816/195x270.jpg"
+  },
+  {
+    player_name: "Asdrubal Cabrera",
+    player_number: "13",
+    average_fpoints: "239",
+    team: "Cleveland Indians",
+    position: "SS",
+    age: 28,
+    height: "6",
+    weight: "205",
+    picture: "https://starstreet.s3.amazonaws.com/images/headshots/2457/195x270.jpg"
+  },
+  {
+    player_name: "Ian Kinsler",
+    player_number: "3",
+    average_fpoints: "299",
+    team: "Detriot Tigers",
+    position: "2B",
+    age: 31,
+    height: "6",
+    weight: "200",
+    picture: "https://starstreet.s3.amazonaws.com/images/headshots/2726/195x270.jpg"
+  },
+  {
+    player_name: "Howie Kendrick",
+    player_number: "47",
+    average_fpoints: "322",
+    team: "Los Angeles Angels",
+    position: "2B",
+    age: 30,
+    height: "5'10",
+    weight: "205",
+    picture: "https://starstreet.s3.amazonaws.com/images/headshots/2197/195x270.jpg"
+  },
+  {
+    player_name: "Miguel Cabrera",
+    player_number: "24",
+    average_fpoints: "335",
+    team: "Detriot Tigers",
+    position: "1B",
+    age: 31,
+    height: "6'4",
+    weight: "240",
+    picture: "https://starstreet.s3.amazonaws.com/images/headshots/3016/195x270.jpg"
+  },
+  {
+    player_name: "Albert Pujols",
+    player_number: "5",
+    average_fpoints: "345",
+    team: "Los Angeles Angels",
+    position: "1B",
+    age: 34,
+    height: "6'3",
+    weight: "230",
+    picture: "https://starstreet.s3.amazonaws.com/images/headshots/2105/195x270.jpg"
+  },
+  {
+    player_name: "Mike Minor",
+    player_number: "36",
+    average_fpoints: "48",
+    team: "Atlanta Braves",
+    position: "SP",
+    age: 26,
+    height: "6'4",
+    weight: "205",
+    picture: "https://starstreet.s3.amazonaws.com/images/headshots/2288/195x270.jpg"
+  },
+  {
+    player_name: "Drew Smyly",
+    player_number: "33",
+    average_fpoints: "115",
+    team: "Detriot Tigers",
+    position: "SP",
+    age: 24,
+    height: "6'3",
+    weight: "190",
+    picture: "https://starstreet.s3.amazonaws.com/images/headshots/6495/195x270.jpg"
+  },
+  {
+    player_name: "Stephen Strasburg",
+    player_number: "37",
+    average_fpoints: "207",
+    team: "Washington Nationals",
+    position: "SP",
+    age: 25,
+    height: "6'4",
+    weight: "211",
+    picture: "https://starstreet.s3.amazonaws.com/images/headshots/2592/195x270.jpg"
+  },
+  {
+    player_name: "Garrett Richards",
+    player_number: "43",
+    average_fpoints: "205",
+    team: "Los Angeles Angels",
+    position: "SP",
+    age: 25,
+    height: "6'3",
+    weight: "215",
+    picture: "https://starstreet.s3.amazonaws.com/images/headshots/6864/195x270.jpg"
+  },
+  {
+    player_name: "Chris Bosh",
+    player_number: "1",
+    average_fpoints: "25.32",
+    team: "Miami Heat",
+    position: "C",
+    age: 30,
+    height: "6'11",
+    weight: "235",
+    picture: "http://imagesnl.draftstreet.com/nba/players/3707.jpg"
+  },
+  {
+    player_name: "David West",
+    player_number: "21",
+    average_fpoints: "25",
+    team: "Indiana Pacers",
+    position: "F",
+    age: 33,
+    height: "6'9",
+    weight: "255",
+    picture: "http://imagesnl.draftstreet.com/nba/players/3721.jpg"
+  },
+  {
+    player_name: "Tony Parker",
+    player_number: "9",
+    average_fpoints: "23.48",
+    team: "San Antonio Spurs",
+    position: "G",
+    age: 32,
+    height: "6'2",
+    weight: "180",
+    picture: "http://imagesnl.draftstreet.com/nba/players/3527.jpg"
+  },
+  {
+    player_name: "Lance Stephenson",
+    player_number: "1",
+    average_fpoints: "25.36",
+    team: "Indiana Pacers",
+    position: "G",
+    age: 23,
+    height: "6'5",
+    weight: "227",
+    picture: "http://imagesnl.draftstreet.com/nba/players/4771.jpg"
+  },
+  {
+    player_name: "Tim Duncan",
+    player_number: "21",
+    average_fpoints: "30.83",
+    team: "San Antonio Spurs",
+    position: "F",
+    age: 38,
+    height: "6'11",
+    weight: "255",
+    picture: "http://imagesnl.draftstreet.com/nba/players/3173.jpg"
+  },
+  {
+    player_name: "Dwyane Wade",
+    player_number: "3",
+    average_fpoints: "28.79",
+    team: "Miami Heat",
+    position: "G",
+    age: 32,
+    height: "6'4",
+    weight: "220",
+    picture: "http://imagesnl.draftstreet.com/nba/players/3708.jpg"
+  },
+  {
+    player_name: "Russell Westbrook",
+    player_number: "0",
+    average_fpoints: "34.22",
+    team: "Oklahoma City Thunder",
+    position: "PG",
+    age: 25,
+    height: "6'3",
+    weight: "200",
+    picture: "http://imagesnl.draftstreet.com/nba/players/4390.jpg"
+  },
+  {
+    player_name: "Paul George",
+    player_number: "24",
+    average_fpoints: "31.71",
+    team: "Indiana Pacers",
+    position: "F",
+    age: 24,
+    height: "6'9",
+    weight: "225",
+    picture: "http://imagesnl.draftstreet.com/nba/players/4725.jpg"
+  },
+  {
+    player_name: "Kevin Durant",
+    player_number: "35",
+    average_fpoints: "44.15",
+    team: "Oklahoma City Thunder",
+    position: "F",
+    age: 25,
+    height: "6'9",
+    weight: "240",
+    picture: "http://imagesnl.draftstreet.com/nba/players/4244.jpg"
+  },
+  {
+    player_name: "LeBron James",
+    player_number: "6",
+    average_fpoints: "40.87",
+    team: "Miami Heat",
+    position: "F",
+    age: 29,
+    height: "6'8",
+    weight: "250",
+    picture: "http://imagesnl.draftstreet.com/nba/players/3704.jpg"
   }
   ])
 

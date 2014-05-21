@@ -49,20 +49,37 @@ class GamesController < ApplicationController
       # Takes URL of each player, puts it in array, then takes out the duplicates.
       @allDraftedPlayersURL = Game.getAllDraftedPlayersURL(game_id)
 
-      # Scraps the data from each players URL and stores in an array.
-      @playerStatsData = Game.scrapData(@allDraftedPlayersURL)
+      if @game.sport.include? "NBA"
+        # Scraps the data from each players URL and stores in an array.
+        @playerStatsData = Game.scrapData(@allDraftedPlayersURL)
+        @playerStatsDataArray = Game.sortScrap(@draftedPlayerList, @playerStatsData)
 
-      # Checks to see if all the games are over and returns a true or false value.
-      @gamesOver = Game.checkGamesOver
+      end
+
+      if @game.sport.include? "MLB"
+        # Scraps the data from each players URL and stores in an array.
+        combined = Game.scrapDataBaseball(@allDraftedPlayersURL)
+        @playerStatsData = combined[0][0]
+        @scoreBoard = combined[1]
+        @playerStatsDataArray = Game.sortScrapBaseball(@draftedPlayerList, @playerStatsData)
+      end
+
+      if @game.sport.include? "NBA"
+        # Checks to see if all the games are over and returns a true or false value.
+        @gamesOver = Game.checkGamesOver
+      end
+
+      if @game.sport.include? "MLB"
+        # Checks to see if all the games are over and returns a true or false value.
+        @gamesOver = Game.checkGamesOverBaseball
+      end
 
       # If all games are over equals true then it gets the winners.
       if @gamesOver == true
         @winners = Game.getWinners(game_id)
       end
 
-      # @theUsersPicks = Game.getUsersPicks()
 
-      @playerStatsDataArray = Game.sortScrap(@draftedPlayerList, @playerStatsData)
 
       if @game && @game.start_time < DateTime.now
         render action: :live

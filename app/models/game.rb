@@ -78,6 +78,80 @@ class Game < ActiveRecord::Base
     playerStatsData
   end
 
+  # Scraps the data from each players URL and stores in an array.
+  def self.scrapDataBaseball(players_url)
+    playerStatsDataBaseball = []
+    @scoreBoard = []
+    scores = []
+      players_url.each do |website|
+        if website != ""
+          doc = Nokogiri::HTML(open(website))
+          playerStatsDataBaseball << doc.css('.away')
+          playerStatsDataBaseball << doc.css('.home')
+          scores << doc.css('.gtScoreboard')
+        end
+          scores.each do |score|
+            array = []
+            array << score.css('.awayTeam a').text
+            array << score.css('.awayTeam .score').text
+            array << score.css('.homeTeam a').text
+            array << score.css('.homeTeam .score').text
+            array << score.css('.gameStatus').text
+            @scoreBoard << array
+          end
+      end
+    [playerStatsDataBaseball] + [@scoreBoard]
+  end
+
+  # Sorts the data then puts it in the database.
+  def self.sortScrapBaseball(draftedPlayerList, playerStatsData)
+    draftedPlayerList.each do |playerObject|
+      player = playerObject.player_name
+      firstLetter = player[0]
+      lastName = player.split(" ")[1]
+      playerStatsArray = []
+
+      if playerObject.position == "SP" || playerObject.position == "P" || playerObject.position == "RP"
+        playerStatsData.each do |data|
+          data.css(".pitchingStats").each do |x|
+            if x.css("tr a").text.include?(lastName)
+              # playerStatsArray.push(x.css("tr td")[0].text, x.css("tr td")[1].text, x.css("tr td")[2].text, x.css("tr td")[3].text, x.css("tr td")[4].text, x.css("tr td")[5].text, x.css("tr td")[6].text, x.css("tr td")[7].text, x.css("tr td")[8].text, x.css("tr td")[9].text, x.css("tr td")[10].text, x.css("tr td")[11].text, x.css("tr td")[12].text)
+
+              strikeouts = x.css("tr td")[6].text.to_i
+              hits = x.css("tr td")[3].text.to_i
+              homeruns = x.css("tr td")[8].text.to_i
+
+              fantasypoints = (strikeouts * 4) + (hits * -1) + (homeruns * -3)
+
+              DraftedPlayer.where(:player_id => playerObject.id).update_all(:points => strikeouts , :rebounds => hits,
+                :assists => homeruns, :fantasypoints => fantasypoints)
+            end
+          end
+        end
+      else
+        playerStatsData.each do |data|
+          data.css(".lineup tr").each do |x|
+            if x.css("a").text.include?(lastName)
+              # playerStatsArray.push(x.css("td")[0].text, x.css("td")[1].text, x.css("td")[2].text, x.css("td")[3].text, x.css("td")[4].text, x.css("td")[5].text, x.css("td")[6].text, x.css("td")[7].text, x.css("td")[8].text, x.css("td")[9].text, x.css("td")[10].text, x.css("td")[11].text, x.css("td")[12].text)
+
+              homeruns = x.css("td")[7].text.to_i
+              rbi = x.css("td")[4].text.to_i
+              r = x.css("td")[2].text.to_i
+              strikeouts = x.css("td")[6].text.to_i
+              hits = x.css("td")[3].text.to_i
+
+              fantasypoints = (homeruns * 10) + (rbi * 3) + (r * 3) + (strikeouts * -1) + (hits * 2)
+
+              DraftedPlayer.where(:player_id => playerObject.id).update_all(:points => homeruns , :rebounds => rbi,
+                :assists => r, :blocks => strikeouts, :steals => hits, :fantasypoints => fantasypoints)
+            end
+          end
+        end
+      end
+    end
+  end
+
+
   # Sorts the data then puts it in the database.
   def self.sortScrap(draftedPlayerList, playerStatsData)
     draftedPlayerList.each do |playerObject|
@@ -108,11 +182,30 @@ class Game < ActiveRecord::Base
     end
   end
 
+
   def self.checkGamesOver
     gamesOverValues = []
     gamesOver = false
     @scoreBoard.each do |game|
       if game.css('#sbTime').text.include? "Final"
+        gamesOverValues << true
+      else
+        gamesOverValues << false
+      end
+    end
+    if gamesOverValues.uniq.size == 1
+      if gamesOverValues.uniq[0] != false
+        gamesOver = true
+      end
+    end
+    gamesOver
+  end
+
+  def self.checkGamesOverBaseball
+    gamesOverValues = []
+    gamesOver = false
+    @scoreBoard.each do |game|
+      if game[4] == "Final"
         gamesOverValues << true
       else
         gamesOverValues << false
@@ -174,8 +267,10 @@ class Game < ActiveRecord::Base
       end
     end
 
-    if tieWinner != []
-      userscores[numofWinners] = tieWinner
+    # if tieWinner != []
+    #   userscores[numofWinners] = tieWinner
+    if tieWinner.empty? == false
+      userscores[numofWinners] = tieWinner[0]
     end
     userscores[0..numofWinners]
   end

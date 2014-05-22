@@ -12,8 +12,9 @@ class GamesController < ApplicationController
       game_id = params[:id]
       @drafted_players = DraftedPlayer.where(game_id: game_id).order(:tier)
       @game = Game.find(game_id)
+      @participating_user = ParticipatingUser.where(game_id: @game.id, user_id: current_user.id)
 
-      if ParticipatingUser.where(game_id: @game.id, user_id: current_user.id)
+      if @participating_user
         @selections = DraftPick.where(user_id: current_user.id)
         @selection_ids = @selections.map {|s| s.drafted_player_id }
       end

@@ -5,9 +5,8 @@ class DraftPicksController < ApplicationController
   end
 
   def show
-    user = ParticipatingUser.where(:user_id => current_user.id)
     @game_ids = []
-    user.each do |e|
+    @user.each do |e|
       @game_ids << e.game_id
     end
     @games = []

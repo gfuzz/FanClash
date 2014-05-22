@@ -51,9 +51,10 @@ class GamesController < ApplicationController
 
       if @game.sport.include? "NBA"
         # Scraps the data from each players URL and stores in an array.
-        @playerStatsData = Game.scrapData(@allDraftedPlayersURL)
+        combined = Game.scrapData(@allDraftedPlayersURL)
+        @playerStatsData = combined[0][0]
+        @scoreBoard = combined[1]
         @playerStatsDataArray = Game.sortScrap(@draftedPlayerList, @playerStatsData)
-
       end
 
       if @game.sport.include? "MLB"
@@ -77,9 +78,8 @@ class GamesController < ApplicationController
       # If all games are over equals true then it gets the winners.
       if @gamesOver == true
         @winners = Game.getWinners(game_id)
+        Game.rewardWinners(@winners, game_id)
       end
-
-
 
       if @game && @game.start_time < DateTime.now
         render action: :live

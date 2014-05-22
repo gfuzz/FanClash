@@ -194,6 +194,14 @@ background-position: 0 -40px;
   font: 20px "nimbus","HelveticaNeue-CondensedBold","Helvetica Neue","Arial Black",Arial,"Lucida Grande",sans-serif;
 }
 
+.userslistitem23 {
+  padding-top: 5px;
+  padding-left: 20px;
+  padding-bottom: 10px;
+  color: white;
+  font: 20px "nimbus","HelveticaNeue-CondensedBold","Helvetica Neue","Arial Black",Arial,"Lucida Grande",sans-serif;
+}
+
 
 .containerofusers {
    height: 250px; /* Fix a height here */
@@ -371,6 +379,7 @@ font: 13px/13px "Century Gothic",CenturyGothic,AppleGothic,sans-serif;
                   <div class="first">
                     <div class="caroufredsel_wrapper" style="display: block; text-align: start; float: none; position: relative; top: auto; right: auto; bottom: auto; left: auto; z-index: auto; width: 100%; height: 35px; margin: 0px; overflow: hidden;"><dl id="ticker-1" style="text-align: left; float: none; position: absolute; top: 0px; right: auto; bottom: auto; margin: 0px; width: 7276px; height: 35px; z-index: auto;">
 
+
                     <% @scoreBoard.each do |scores| %>
                         <dt><%= scores[0] %>:<%= scores[1] %> - <%= scores[2] %>:<%= scores[3] %></dt>
                     <% end -%>
@@ -431,7 +440,7 @@ font: 13px/13px "Century Gothic",CenturyGothic,AppleGothic,sans-serif;
 
 
           <% userscores.each do |user| %>
-          <div class="userslistitem2">
+          <div class="userslistitem23">
             <% count += 1 %>
             <% userID = user[:user].id %>
             <% usersUserName = user[:user].username %>

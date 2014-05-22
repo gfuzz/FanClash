@@ -67,15 +67,25 @@ class Game < ActiveRecord::Base
   def self.scrapData(players_url)
     playerStatsData = []
     @scoreBoard = []
+    scores = []
       players_url.each do |website|
         if website != ""
           doc = Nokogiri::HTML(open(website))
           playerStatsData << doc.css('.awayStats')
           playerStatsData << doc.css('.homeBoxScorePlayerStats')
-          @scoreBoard << doc.css('#mainScoreBoard')
+          scores << doc.css('#mainScoreBoard')
+        end
+        scores.each do |score|
+          array = []
+          array << score.css('#awayScoreTile span').text[0..2]
+          array << score.css('#awayScoreTile span').text[3..-1]
+          array << score.css('#homeScoreTile span').text[0..2]
+          array << score.css('#homeScoreTile span').text[3..-1]
+          array << score.css('.sbTimeFinal').text
+          @scoreBoard << array
         end
       end
-    playerStatsData
+    [playerStatsData] + [@scoreBoard]
   end
 
   # Scraps the data from each players URL and stores in an array.
@@ -187,7 +197,7 @@ class Game < ActiveRecord::Base
     gamesOverValues = []
     gamesOver = false
     @scoreBoard.each do |game|
-      if game.css('#sbTime').text.include? "Final"
+      if game[4] == "Final"
         gamesOverValues << true
       else
         gamesOverValues << false
@@ -252,10 +262,9 @@ class Game < ActiveRecord::Base
         tiebreakerPeople << score
       end
     end
-    tieWinner = []
     tiePlayerPoints = DraftedPlayer.where(game_id: game_id)[10].fantasypoints
-
-    if tiebreakerPeople.empty? == false
+    tieWinner = [{:username => "", :tieGuess => 0, :difference => 99999999}]
+    if tiebreakerPeople != []
       tiebreakerPeople.each do |score|
         person = User.where(username: score[:username])[0]
         tie_amount = ParticipatingUser.where(game_id: game_id, user_id: person.id)[0].tiebreaker
@@ -269,10 +278,20 @@ class Game < ActiveRecord::Base
 
     # if tieWinner != []
     #   userscores[numofWinners] = tieWinner
-    if tieWinner.empty? == false
+    if tieWinner != []
       userscores[numofWinners] = tieWinner[0]
     end
     userscores[0..numofWinners]
+  end
+
+
+  def self.rewardWinners(winners, game_id)
+    game = Game.find(game_id)
+    payout = game.buy_in * 2
+    winners.each do |winner|
+      user = User.where(winner[:username])[0]
+      user.money += payout
+    end
   end
 
   def add_entry

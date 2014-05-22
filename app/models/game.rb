@@ -287,10 +287,18 @@ class Game < ActiveRecord::Base
 
   def self.rewardWinners(winners, game_id)
     game = Game.find(game_id)
-    payout = game.buy_in * 2
+    payout = game.buy_in.to_i * 2
     winners.each do |winner|
-      user = User.where(winner[:username])[0]
-      user.money += payout
+      user = User.where(username: winner[:username])[0]
+      part_user = ParticipatingUser.where(user_id: user.id, game_id: game_id)[0]
+      if part_user.paid_out == false
+        user2 = User.where(username: winner[:username])[0]
+        paid = user2.money.to_i + payout
+        user2.money = paid
+        part_user.paid_out = true
+        user2.save
+        part_user.save
+      end
     end
   end
 

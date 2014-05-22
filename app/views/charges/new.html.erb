@@ -35,7 +35,7 @@
   });
 
   $('.stripe-test').on('click', function(e) {
-  	amount = parseInt($('#amount').val(), 10);
+  	amount = parseInt($('#amount').val(), 10) * 100;
     // Open Checkout with further options
     handler.open({
       name: 'FanClash',

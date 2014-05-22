@@ -80,10 +80,58 @@ div.selected {
       <p>How many points will <%= tieplayer.player_name %> get? <input type="text" name="tiebreaker"></p>
     </div>
   </div>
-
-  <center><%= submit_tag( "Choose My Players", class: "btn-primary" ) %>
+  <center>
+    <% if current_user.money >= @game.buy_in && @participating_user.empty? %>
+      <%= link_to "Choose My Players", "#play#{@game.id}", :data => {:toggle => "modal"}, class: "btn dk-button", :game => @game %>
+    <% elsif current_user.money <= @game.buy_in && @participating_user.empty? %>
+      <%= link_to "Choose My Players", "#no-money", :data => {:toggle => "modal"}, class: "btn dk-button", :game => @game %>
+    <% elsif @participating_user != [] %>
+      <%= link_to "Choose My Players", "#play#{@game.id}", :data => {:toggle => "modal"}, class: "btn dk-button", :game => @game %>
+    <% end %>
     <div class="game-countdown counter" data-start-time="<%= @game.start_time.to_i %>"></div>
   </center>
+
+  <div class="modal fade" id="play<%= @game.id %>" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form class="form-horizontal">
+          <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+            <h3>You are about to play the following game: <%= @game.sport %></h3><hr>
+            <% if @participating_user.empty? %>
+              <p>The price for this game is: $<%= @game.buy_in %></p><br />
+            <% else %>
+              <p>You are about to edit your players</p>
+            <% end %>
+            <p>Do you wish to continue?</p>
+            <div class="modal-buttons">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+              <%= submit_tag( "Yes", class: "btn dk-button" ) %>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div> <!-- End Play Modal -->
+  
+  <div class="modal fade" id="no-money" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form class="form-horizontal">
+          <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+            <h3>You are not able to play the following game: <%= @game.sport %></h3><hr>
+            <p>The price for this game is: $<%= @game.buy_in %></p><br />
+            <p>Please deposit more money on your account in order to play</p>
+            <div class="modal-buttons">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+              <%= link_to "Deposit Money", new_charge_path, class: "btn btn-success" %>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div> <!-- End No Money Modal -->
 
   <div class="modal fade" id="fp-scoring" role="dialog">
     <div class="modal-dialog">
@@ -100,11 +148,13 @@ div.selected {
             <li>Steal = 2</li>
             <li>Turnover = -1</li>
           </ul>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <div class="modal-buttons">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </div> <!-- End Fantasy Scoring Modal -->
 </div>
 
 

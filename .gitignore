@@ -18,3 +18,4 @@
 DS_Store
 .env
 Procfile
+config/database.yml

@@ -32,6 +32,8 @@ class DraftPicksController < ApplicationController
         pu.save
 
         game.add_entry
+        current_user.money -= game.buy_in
+        current_user.save!
       end
     else
       flash[:alert] = 'Cannot join, game is full.'

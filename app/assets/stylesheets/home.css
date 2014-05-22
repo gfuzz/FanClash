@@ -221,6 +221,9 @@ background-position: 0 -40px;
 	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #232323), color-stop(1, #444));
 	color: #fcc700;
 }
+.dk-button:hover {
+	color: #fff;
+}
 .close {
 	color: #fff;
 }
